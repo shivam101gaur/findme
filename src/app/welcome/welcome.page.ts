@@ -31,13 +31,12 @@ export class WelcomePage implements OnInit {
 
   ngOnInit() {
 
-    this.bgm.once('unlock', function () {
-      // console.log('bgm unlocked calling start game()');
-      // this.start_game();
-    })
-    this.bgm.on('playerror', function () {
-      console.log('bgm play error')
-    })
+    // this.bgm.once('unlock', function () {
+    //   console.log('bgm unlocked');
+    // })
+    // this.bgm.on('playerror', function () {
+    //   console.log('bgm play error')
+    // })
 
   }
 
@@ -46,7 +45,10 @@ export class WelcomePage implements OnInit {
     this.setEventHandler()
     this.play_bgm();
   }
+
+  //controlling the game title animation here
   setEventHandler(callrepeat?: number) {
+
     setTimeout(() => {
       let t_div = document.getElementById("titleDiv");
 
@@ -71,6 +73,7 @@ export class WelcomePage implements OnInit {
     });
   }
 
+  //start the background music here
   play_bgm() {
     if (!this.bgm_play_ref) {
       this.bgm_play_ref = this.bgm.play('audible');
@@ -81,6 +84,7 @@ export class WelcomePage implements OnInit {
     }
 
   }
+  //mute/unmute the music playing in howler
   toggle_sound() {
     if (this.sound_on) {
       //stop track / mute sound
@@ -96,9 +100,6 @@ export class WelcomePage implements OnInit {
       this.bgm.play(this.bgm_play_ref)
       this.sound_on = true
     }
-
-
-
   }
 
 

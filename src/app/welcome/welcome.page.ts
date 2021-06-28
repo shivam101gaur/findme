@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Howl, Howler } from 'howler';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MusicControllerService } from '../services/music-controller.service';
 
 @Component({
   selector: 'app-welcome',
@@ -10,40 +11,26 @@ export class WelcomePage implements OnInit {
 
   game_name = "FIND-ME";
   game_on: boolean = false;
-  show_game_name: boolean = true;
 
-  sound_on: boolean = true;
-  _Howler = Howler;
-  bgm_play_ref: any;
 
-  bgm = new Howl(
-    {
-      autoplay: false,
-      src: ['assets/music/aggressive-expansion.mp3'],
-      sprite: {
-        audible: [4000, 100000],
-      }
-    })
+  
+  
+  
 
-  public get sound_btn(): string { return (this.sound_on) ? "volume_up" : "volume_off" }
 
-  constructor() { }
+
+  public get sound_btn(): string { return (this.music_controller.sound_on) ? "volume_up" : "volume_off" }
+
+  constructor(public music_controller:MusicControllerService,public router:Router,public activated_route:ActivatedRoute) { }
 
   ngOnInit() {
-
-    // this.bgm.once('unlock', function () {
-    //   console.log('bgm unlocked');
-    // })
-    // this.bgm.on('playerror', function () {
-    //   console.log('bgm play error')
-    // })
 
   }
 
   start_game() {
     this.game_on = true;
-    this.setEventHandler()
-    this.play_bgm();
+    this.setEventHandler();
+    this.music_controller.play_bgm()
   }
 
   //controlling the game title animation here
@@ -61,9 +48,11 @@ export class WelcomePage implements OnInit {
         });
         t_div.addEventListener('animationend', () => {
           console.log('animation ended');
-          t_div.classList.remove('fade_in');
-          this.show_game_name = false
-          console.log('classes found' + t_div.classList.value);
+          // t_div.classList.remove('fade_in');
+          
+          this.router.navigate(['../authentication'],{relativeTo:this.activated_route})
+          
+          
 
         })
       } else {
@@ -73,34 +62,11 @@ export class WelcomePage implements OnInit {
     });
   }
 
-  //start the background music here
-  play_bgm() {
-    if (!this.bgm_play_ref) {
-      this.bgm_play_ref = this.bgm.play('audible');
-      this.bgm.once('play', function () {
-        console.log('bgm playing')
-        this.sound_on = true;
-      })
-    }
+  
+  
+  
 
-  }
-  //mute/unmute the music playing in howler
-  toggle_sound() {
-    if (this.sound_on) {
-      //stop track / mute sound
-      // this._Howler.volume(0)
-      // this._Howler.mute(true)
-      this.bgm.pause(this.bgm_play_ref)
-      this.sound_on = false;
-    }
-    else {
-      //play track/unmute track
-      // this._Howler.volume(1)
-      // this._Howler.mute(false)
-      this.bgm.play(this.bgm_play_ref)
-      this.sound_on = true
-    }
-  }
+
 
 
 }

@@ -32,12 +32,17 @@ import { MatTabsModule } from '@angular/material/tabs';
 import {MatSliderModule} from '@angular/material/slider';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {ClipboardModule} from '@angular/cdk/clipboard';
+import { WorkUnderProgressComponent } from '../work-under-progress/work-under-progress.component';
+import {  CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+import { RouterModule } from '@angular/router';
 
 
 
 
 @NgModule({
-  declarations: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  declarations: [WorkUnderProgressComponent],
   exports: [
     MatExpansionModule,
     MatTooltipModule,
@@ -74,7 +79,12 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
     FormsModule, 
     ReactiveFormsModule,
     ClipboardModule,
+    WorkUnderProgressComponent
 
-  ]
+  ],
+
+  imports: [
+    RouterModule
+  ],
 })
 export class AngularMaterialModule { }

@@ -1,0 +1,48 @@
+<ion-card class="card" >
+  <ion-card-header color="light"  >
+    <ion-grid >
+      <ion-row>
+        <ion-col style="display:flex;justify-content: center;">
+          <ion-avatar>
+            <img
+              [src]="'https://i1.wp.com/arabicmehndidesign.com/wp-content/uploads/2020/10/30-New-Stylish-Men-Hairstyle-Long-Haircut-Ideas-For-You-21.png?fit=467%2C541&ssl=1'" />
+          </ion-avatar>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-card-header>
+  <ion-card-content class="ion-margin" >
+    <form [formGroup]="login_form" (ngSubmit)="onSubmit()" >
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label> USER NAME</mat-label>
+        <input formControlName="user_name" matInput required>
+        <mat-error *ngIf="user_name.invalid">{{get_errors(user_name.errors)}} </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label> Password</mat-label>
+        <input formControlName="user_password" matInput pattern="[0-9]*" maxlength=4 minlength=1
+          [type]="hide ? 'password' : 'text'" inputmode="numeric" required>
+        <mat-error *ngIf="user_password.invalid">{{get_errors(user_password.errors)}} </mat-error>
+        <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      
+      <ion-button  type="submit" color="dark" class="ion-margin-top" expand="block" fill="solid"  shape="round">
+        LOG IN
+      </ion-button>
+      <span class="ion-margin-top" style="display: flex;justify-content: space-between;">
+        <ion-button  type="button"  [routerLink]="['../registration']"   color="primary"   fill="clear" shape="round">
+          new user ?
+        </ion-button>
+        <ion-button type="button" [routerLink]="['../reset_password']" color="danger"   fill="clear" shape="round">
+          forgot password
+        </ion-button>
+      </span>
+    </form>
+
+  </ion-card-content>
+</ion-card>

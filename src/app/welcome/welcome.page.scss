@@ -1,0 +1,62 @@
+.maincontainer
+{
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.title
+{
+
+    display: flex;
+    font-family:coalition;
+    font-size: 15vmin;
+    user-select: none;
+    outline: none;
+    color: white;
+    height: fit-content;
+    width: fit-content;
+}
+
+
+.bottomcorner{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 2.5%;
+}
+
+.volume_icon
+{   
+    color:white;
+    font-size: 6vmin; 
+}
+
+
+.fade_in {
+    animation: fadeInAnimation  ease-in 5s ;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+    
+        color: black;
+    }
+    60% {
+
+        color: greenyellow;
+    } 
+    80%{
+      
+        color: rgb(255, 174, 0);
+    }
+    100%{
+      color: black;
+    }
+   
+}

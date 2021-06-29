@@ -1,0 +1,21 @@
+<div class="maincontainer">
+
+
+    <div id="titleDiv" class="title " *ngIf="game_on">
+    </div>
+    <div class="title" *ngIf="!game_on">
+        <button autofocus="true" class="startbtn" mat-raised-button color="accent" (click)="start_game()">START &nbsp;
+            <mat-icon>play_circle_outline</mat-icon>
+        </button>
+    </div>
+ 
+
+
+    <div *ngIf="game_on" class="bottomcorner">
+        <button mat-icon-button (click)="$event.stopPropagation();" (click)="music_controller.toggle_sound()">
+            <mat-icon class="volume_icon">{{ sound_btn }}</mat-icon>
+        </button>
+    </div>
+
+
+</div>

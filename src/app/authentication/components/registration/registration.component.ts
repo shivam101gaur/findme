@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { ToastOptions } from '@ionic/core';
 import { User } from 'src/app/models/user.model';
 import { HttpUserService } from 'src/app/services/http-user.service';
+import { ToasterService } from 'src/app/services/toaster.service';
 
 
 @Component({
@@ -30,7 +33,7 @@ export class RegistrationComponent implements OnInit {
   }
 
 
-  constructor(public toastController: ToastController, public httpUserService: HttpUserService) { }
+  constructor(public toaster:ToasterService, public httpUserService: HttpUserService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() { }
 
@@ -42,22 +45,13 @@ export class RegistrationComponent implements OnInit {
     if (this.reg_form.valid) { this.submit() }
     else {
 
-      this.toast('Invalid Input', JSON.stringify(this.reg_form.errors));
+      this.toaster.toast({ header: 'Invalid Input' });
 
     }
 
   }
 
-  async toast(header, message) {
 
-    const toast = await this.toastController.create({
-      header: header,
-      message: message
-    })
-
-    toast.present();
-
-  }
 
   private submit() {
 
@@ -66,24 +60,27 @@ export class RegistrationComponent implements OnInit {
     user.name = this.user_name.value;
     user.password = this.user_password.value;
 
-    console.group(['before posting user']);
+    console.group('before posting user');
     console.log(user);
     console.log(JSON.stringify(user));
     console.groupEnd();
 
-    this.post_user(user)  
+    this.post_user(user)
   }
 
-  post_user(user:User){
+  post_user(user: User) {
     this.httpUserService.postUser(user).subscribe(res => {
-      console.group(['after posting user','second label','third label']);
+      console.group('after posting user');
       console.log(res);
       console.log(JSON.stringify(res));
       console.groupEnd();
-      this.toast('Congratulations', 'You have been registered');
+      this.toaster.toast({ header: 'Congratulations', message: 'You have been registered with id:' + res._id });
+      this.router.navigate(['../login'], { relativeTo: this.activatedRoute })
     }, error => {
-      this.toast('Sorry something went wrong', JSON.stringify(error));
-    }) 
+      this.toaster.toast({ header: 'Sorry something went wrong', message: JSON.stringify(error) });
+    })
   }
+
+
 
 }

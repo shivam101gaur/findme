@@ -4,16 +4,18 @@
       <ion-row>
         <ion-col style="display:flex;justify-content: center;">
           <ion-avatar>
-            <img [src]="'https://i1.wp.com/arabicmehndidesign.com/wp-content/uploads/2020/10/30-New-Stylish-Men-Hairstyle-Long-Haircut-Ideas-For-You-21.png?fit=467%2C541&ssl=1'" />
+            <img
+              [src]="'https://i1.wp.com/arabicmehndidesign.com/wp-content/uploads/2020/10/30-New-Stylish-Men-Hairstyle-Long-Haircut-Ideas-For-You-21.png?fit=467%2C541&ssl=1'" />
           </ion-avatar>
 
-       
+
         </ion-col>
       </ion-row>
     </ion-grid>
 
   </ion-card-header>
   <ion-card-content class="ion-margin">
+
     <form [formGroup]="reg_form" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="outline" style="width: 100%;">
         <mat-label> USER NAME</mat-label>
@@ -32,7 +34,7 @@
         </button>
       </mat-form-field>
 
-      <ion-button color="dark" class="ion-margin-top" expand="block" fill="solid" shape="round">
+      <ion-button type="submit" color="dark" class="ion-margin-top" expand="block" fill="solid" shape="round">
         Register
       </ion-button>
       <span class="ion-margin-top" style="display: flex;justify-content: space-between;">

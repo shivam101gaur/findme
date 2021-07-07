@@ -23,7 +23,6 @@ export class UserService {
   return this.http.get<User>(this.user_api_address);
 
   }
-
  
   //📝get user based upon name 
   getUserByName(name:string){

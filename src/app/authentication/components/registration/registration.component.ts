@@ -74,10 +74,10 @@ export class RegistrationComponent implements OnInit {
       console.log(res);
       console.log(JSON.stringify(res));
       console.groupEnd();
-      this.toaster.toast({ header: 'Congratulations', message: 'You have been registered with id:' + res._id });
+      this.toaster.toast({ header: '✅ Congratulations', message: 'You have been registered' });
       this.router.navigate(['../login'], { relativeTo: this.activatedRoute })
     }, error => {
-      this.toaster.toast({ header: 'Sorry something went wrong', message: JSON.stringify(error) });
+      this.toaster.toast({ header: '❌ User Already Exist'});
     })
   }
 

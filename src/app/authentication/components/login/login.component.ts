@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     return this.login_form.get('user_password')
   }
 
-  constructor(public toaster:ToasterService, public httpUserService: HttpUserService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(public toaster: ToasterService, public httpUserService: HttpUserService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
 
   ngOnInit() { }
@@ -40,20 +40,29 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
 
+    if (this.login_form.valid) {
+      this.submit()
+    } else {
+      alert('Take your time and enter details carefully :)')
+    }
+
   }
 
   private submit() {
 
-    // 👀 creating new user to post
-    let user: User = new User();
-    user.name = this.user_name.value;
-    user.password = this.user_password.value;
-
-
-
+    this.httpUserService.getUserByName(this.user_name.value).subscribe((res: [User]) => {
+      console.log({res})
+      if(res.length<1){ alert('User could not be find!\nCheck your user name!');return }
+      if (res[0].password == this.user_password.value) {
+        sessionStorage.setItem("user", JSON.stringify(res));
+        alert('login successfull')
+      }
+    },(err)=>{
+      alert('User could not be validated! Try again later')
+    }
+    )
 
   }
-
 
 
 }

@@ -16,13 +16,13 @@ export class HttpUserService {
 
   //📝 fetch all users 
   getAllUsers() {
-    return this.http.get<User>(this.user_api_address);
+    return this.http.get<[User]>(this.user_api_address);
 
   }
 
   //📝get user based upon name 
   getUserByName(name: string) {
-    return this.http.get<User>(`${this.user_api_address}/${name}`)
+    return this.http.get<[User]>(`${this.user_api_address}${name}`)
   }
 
   //📝 post user 

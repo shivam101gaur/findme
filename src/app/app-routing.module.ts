@@ -1,27 +1,35 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AdminGuard } from './guards/admin.guard';
+import { AuthenticationGuard } from './guards/authentication.guard';
+import { HomeGuard } from './guards/home.guard';
+import { WelcomeGuard } from './guards/welcome.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'authentication',
+    redirectTo: 'welcome',
     pathMatch: 'full'
   },
   {
     path: 'welcome',
-    loadChildren: () => import('./welcome/welcome.module').then( m => m.WelcomePageModule)
+    loadChildren: () => import('./welcome/welcome.module').then(m => m.WelcomePageModule),
+    canActivate: [WelcomeGuard]
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule),
+    canActivate: [HomeGuard]
   },
   {
     path: 'authentication',
-    loadChildren: () => import('./authentication/authentication.module').then( m => m.AuthenticationPageModule)
+    loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationPageModule),
+    canActivate: [AuthenticationGuard]
   },
   {
     path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then( m => m.AdminPageModule)
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminPageModule),
+    canActivate: [AdminGuard]
   },
 ];
 

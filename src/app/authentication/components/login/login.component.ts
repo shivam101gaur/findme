@@ -53,9 +53,17 @@ export class LoginComponent implements OnInit {
     this.httpUserService.getUserByName(this.user_name.value).subscribe((res: [User]) => {
       console.log({res})
       if(res.length<1){ alert('User could not be find!\nCheck your user name!');return }
-      if (res[0].password == this.user_password.value) {
-        sessionStorage.setItem("user", JSON.stringify(res));
-        alert('login successfull')
+      const user = res[0]
+      if (user.password == this.user_password.value) {
+        sessionStorage.setItem("currentUser", JSON.stringify(user));
+        console.log('login successfull');
+        if(user.name=='admin'){
+          this.router.navigate(['./admin'])
+        }
+        else{
+          this.router.navigate(['./home'])
+        }
+
       }
     },(err)=>{
       alert('User could not be validated! Try again later')

@@ -1,3 +1,17 @@
-<p>
-  manage-world works!
-</p>
+<ion-list lines="full">
+  <ion-list-header lines="full">
+    <ion-label>Your Worlds</ion-label>
+    <ion-button (click)="presentCreateWorldModal()" >Create New World</ion-button>
+  </ion-list-header>
+
+  <ion-item button detail="false" *ngFor="let world of worldList">
+    <ion-label>{{world.name}}</ion-label>
+
+    <ion-button (click)="deleteWorld(world._id)" color="danger" slot="end" >
+      <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
+    </ion-button>
+  </ion-item>
+
+
+
+</ion-list>

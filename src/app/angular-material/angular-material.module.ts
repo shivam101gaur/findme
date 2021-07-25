@@ -65,7 +65,6 @@ import { RouterModule } from '@angular/router';
     MatSnackBarModule,
     MatTabsModule,
     MatSliderModule,
-
     MatBadgeModule,
     MatMenuModule,
     MatDatepickerModule,
@@ -76,6 +75,7 @@ import { RouterModule } from '@angular/router';
     MatProgressBarModule,
     MatRippleModule,
     MatChipsModule,
+
     FormsModule, 
     ReactiveFormsModule,
     ClipboardModule,

@@ -1,6 +1,6 @@
 <ion-content>
     <ion-tabs>
-        <ion-tab-bar slot="top">
+        <ion-tab-bar slot="bottom">
             <ion-tab-button tab="manage_worlds">
                 <ion-icon name="earth-outline"></ion-icon>
                 <ion-label>Worlds</ion-label>
@@ -12,30 +12,12 @@
                 <ion-label>About</ion-label>
             </ion-tab-button>
 
-            <ion-tab-button (click)="settingMenu.open()">
+            <ion-tab-button >
                 <ion-icon name="settings-outline"></ion-icon>
                 <ion-label>Settings</ion-label>
             </ion-tab-button>
         </ion-tab-bar>
     </ion-tabs>
 
-    <ion-menu side="end" swipeGesture=true #settingMenu menuId="first" contentId="main">
-        <ion-header>
-            <ion-toolbar color="primary">
-                <ion-title>Start Menu</ion-title>
-            </ion-toolbar>
-        </ion-header>
-        <ion-content>
-            <ion-list>
-                <ion-item>Menu Item</ion-item>
-                <ion-item>Menu Item</ion-item>
-                <ion-item>Menu Item</ion-item>
-                <ion-item>Menu Item</ion-item>
-                <ion-item>Menu Item</ion-item>
-            </ion-list>
-        </ion-content>
-    </ion-menu>
-
-    <ion-router-outlet id="main"></ion-router-outlet>
 
 </ion-content>

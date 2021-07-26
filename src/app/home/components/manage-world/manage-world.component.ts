@@ -41,6 +41,7 @@ export class ManageWorldComponent implements OnInit {
   }
 
   async presentCreateWorldModal() {
+
     const modal = await this.modalController.create({
       component: CreateWorldComponent,
       cssClass: 'my-custom-class',
@@ -48,6 +49,9 @@ export class ManageWorldComponent implements OnInit {
       presentingElement: await this.modalController.getTop(),
       mode: 'ios'
     });
+    modal.onDidDismiss().then((res)=>{
+      this.getWorldListForUser();
+    })
     return await modal.present();
   }
 

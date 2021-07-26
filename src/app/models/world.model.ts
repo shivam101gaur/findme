@@ -8,4 +8,5 @@ export interface World {
 
 
 export class World implements World {
+    constructor(){};
 }

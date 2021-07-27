@@ -9,6 +9,7 @@ const routes: Routes = [
     path: '',
     component: HomePage,
     children:[
+      { path:'',redirectTo:'manage_worlds',pathMatch:"full" },
       { path:'manage_worlds',component:ManageWorldComponent },
       { path:'about_app',component:AboutAppComponent }
 

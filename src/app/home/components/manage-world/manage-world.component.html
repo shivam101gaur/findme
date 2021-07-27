@@ -1,20 +1,29 @@
 <ion-list lines="full">
-  <ion-list-header lines="full">
+  <ion-list-header lines="full" class="ion-padding">
     <ion-label>Your Worlds</ion-label>
-    <ion-button (click)="presentCreateWorldModal()" >Create New World</ion-button>
+    <ion-button fill="solid"  shape="round" (click)="presentCreateWorldModal()">Create New World</ion-button>
   </ion-list-header>
-<ion-item-sliding>
-  <ion-item-options>
 
-    <ion-item button detail="false" *ngFor="let world of worldList">
+  <ion-item-sliding *ngFor="let world of worldList" #slidingItem>
+
+    <ion-item-options (ionSwipe)="deleteWorld(world._id)" side="start">
+      <ion-item-option color="danger" expandable>
+        <ion-button color="light" expand="block" fill="clear" (click)="deleteWorld(world._id)">
+          <ion-icon size="large" slot="start" color="light" name="close-outline"></ion-icon>
+          Delete World
+        </ion-button>
+      </ion-item-option>
+    </ion-item-options>
+
+    <ion-item button detail="false">
       <ion-label>{{world.name}}</ion-label>
-      
-      <ion-button (click)="deleteWorld(world._id)" color="danger" slot="end" >
-        <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
-      </ion-button>
+      <ion-icon slot="start" name="earth-outline" size="large"></ion-icon>
+      <ion-note color="secondary" size="large" slot="end">{{ world.members.length }}
+        <ion-icon name="people-outline"></ion-icon>
+      </ion-note>
     </ion-item>
-  </ion-item-options>
-</ion-item-sliding>
+
+  </ion-item-sliding>
 
 
 

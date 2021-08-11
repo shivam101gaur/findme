@@ -25,6 +25,12 @@ export class HttpUserService {
     return this.http.get<[User]>(`${this.user_api_address}${name}`)
   }
 
+  // 📝 get all users whoose id's are present in member's  array
+  getUsersInList(members:string[]){
+    // 🤪 using POST here instead of GET , to pass the body , which is not allowed in GET Method
+    return this.http.post<User[]>(`${this.user_api_address}in/list`,{members})
+  }
+
   //📝 post user 
   postUser(user: User) {
     return this.http.post<User>(`${this.user_api_address}`, user)

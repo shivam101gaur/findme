@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> Join New World</ion-title>
+    <ion-button (click)="cancel()" slot="end"  expand="block" fill="clear" shape="round">
+      Cancel
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="full">
+
+    <ion-item *ngFor="let world of worldList">
+      <ion-label>{{world.name}}</ion-label>
+      <ion-icon slot="start" name="planet-outline"></ion-icon>
+
+      <ion-button (click)="presentViewMembersModal(world)" expand="block" color="secondary" fill="clear" shape="round">
+        <ion-badge mode="ios" color="secondary">
+          {{ world.members.length }}
+        </ion-badge>
+        <ion-icon color="secondary" name="people-outline" size="medium" slot="end"></ion-icon>
+
+      </ion-button>
+  
+      <ion-button (click)="joinWorld(world._id)" color="primary" size="medium" slot="end"  fill="outline" shape="round">
+        <ion-icon slot="end" name="enter-outline"></ion-icon>
+        Join 
+      </ion-button>
+    </ion-item>
+
+
+
+
+
+
+
+
+
+  </ion-list>
+</ion-content>

@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()" color="danger" fill="clear">
+        Cancel
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+<ion-content>
+
+ 
+  
+
+  <form [formGroup]="worldForm" (ngSubmit)="onSubmit()">
+    <ion-list>
+
+      <ion-list-header lines="full">
+        <ion-label>
+          Edit World
+        </ion-label>
+      </ion-list-header>
+
+
+      <ion-item>
+        <ion-label position="floating">World Name</ion-label>
+        <ion-input formControlName="name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">World Password</ion-label>
+        <ion-input formControlName="password"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-button type="submit" slot="end">
+          Update
+        </ion-button>
+      </ion-item>
+
+    </ion-list>
+
+  </form>
+</ion-content>

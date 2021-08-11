@@ -8,5 +8,17 @@ export interface World {
 
 
 export class World implements World {
-    constructor(){};
+    constructor() { };
+}
+
+
+export interface Message {
+
+    from:string;
+    type:'text'|'image'|'video'|'pdf'
+
+}
+
+export class Message implements Message {
+    constructor() { }
 }

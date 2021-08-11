@@ -6,6 +6,9 @@ import { World } from 'src/app/models/world.model';
 import { AlertCreaterService } from 'src/app/services/alert-creater.service';
 import { HttpWorldService } from 'src/app/services/http-world.service';
 import { CreateWorldComponent } from '../create-world/create-world.component';
+import { JoinWorldComponent } from '../join-world/join-world.component';
+import { UpdateWorldComponent } from '../update-world/update-world.component';
+import { ViewMembersComponent } from '../view-members/view-members.component';
 
 @Component({
   selector: 'app-manage-world',
@@ -63,6 +66,57 @@ export class ManageWorldComponent implements OnInit {
 
     const modal = await this.modalController.create({
       component: CreateWorldComponent,
+      cssClass: 'my-custom-class',
+      swipeToClose: true,
+      presentingElement: await this.modalController.getTop(),
+      mode: 'ios'
+    });
+    modal.onDidDismiss().then((res) => {
+      this.getWorldListForUser();
+    })
+    return await modal.present();
+  }
+
+  async presentEditWorldModal(world:World) {
+
+    const modal = await this.modalController.create({
+      componentProps:{
+        'world':world
+      },
+      component: UpdateWorldComponent,
+      cssClass: 'my-custom-class',
+      swipeToClose: true,
+      presentingElement: await this.modalController.getTop(),
+      mode: 'ios'
+    });
+    modal.onDidDismiss().then((res) => {
+      this.getWorldListForUser();
+    })
+    return await modal.present();
+  }
+
+  async presentJoinWorldModal() {
+
+    const modal = await this.modalController.create({
+      component: JoinWorldComponent,
+      cssClass: 'my-custom-class',
+      swipeToClose: true,
+      presentingElement: await this.modalController.getTop(),
+      mode: 'ios'
+    });
+    modal.onDidDismiss().then((res) => {
+      this.getWorldListForUser();
+    })
+    return await modal.present();
+  }
+
+  async presentViewMembersModal(world:World) {
+
+    const modal = await this.modalController.create({
+      componentProps:{
+        'world':world
+      },
+      component: ViewMembersComponent,
       cssClass: 'my-custom-class',
       swipeToClose: true,
       presentingElement: await this.modalController.getTop(),

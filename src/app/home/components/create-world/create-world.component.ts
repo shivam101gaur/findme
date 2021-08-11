@@ -12,9 +12,9 @@ import { ToasterService } from 'src/app/services/toaster.service';
 })
 export class CreateWorldComponent implements OnInit {
 
-  worldForm: FormGroup = new FormGroup({
-    'name': new FormControl(null, [Validators.required]),
-    'password': new FormControl(null, [Validators.required]),
+  worldForm = new FormGroup({
+    'name':new FormControl(null,[Validators.required,Validators.minLength(1),Validators.maxLength(15)]),
+    'password':new FormControl(null,[Validators.required,Validators.minLength(4),Validators.maxLength(4)]),
   })
 
   public get worldNameFormControl() {
@@ -56,7 +56,8 @@ export class CreateWorldComponent implements OnInit {
       this.toasterService.toast({
         header: `❌ Error in fetching Current User's ID`,
         message: `🤷‍♂️ Current User required in World created_by field`
-      })
+      });
+      return
     }
     
     console.log(`world before posting`);

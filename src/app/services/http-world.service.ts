@@ -10,7 +10,7 @@ import { World } from '../models/world.model';
 export class HttpWorldService {
 
   world_api_address: string = `${apiAddress}worlds/`
-  
+
   constructor(private http: HttpClient) { }
 
   // 📝 get all worlds 
@@ -21,9 +21,13 @@ export class HttpWorldService {
   getWorldByName(name: string) {
     return this.http.get<[World]>(`${this.world_api_address}${name}`)
   }
-  // 📝 get all worlds where a user is present
+  // 📝 get all worlds where a user is present / is a member of that world
   getWorldByUserId(userId: string) {
-    return this.http.get<[World]>(`${this.world_api_address}user/${userId}`)
+    return this.http.get<[World]>(`${this.world_api_address}member/${userId}`)
+  }
+  // 📝❌ get all worlds where a user is not present / is not a member of that world
+  getNewWorldForUserByUserId(userId: string) {
+    return this.http.get<[World]>(`${this.world_api_address}notamember/${userId}`)
   }
 
   // 📝 post a new world
@@ -33,6 +37,11 @@ export class HttpWorldService {
   // 📝 Update existing world 
   putWorld(worldId: string, world: World) {
     return this.http.put<World>(`${this.world_api_address}${worldId}`, world)
+  }
+
+  // add new  member to existing world
+  addMembersToWorld(members: string[], worldId: string) {
+    return this.http.put<World>(`${this.world_api_address}addmember/${worldId}`, { members })
   }
   // 📝 delete a world by it's ID
   deleteWorld(worldId: string) {

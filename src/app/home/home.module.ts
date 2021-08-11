@@ -9,6 +9,9 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
 import { ManageWorldComponent } from './components/manage-world/manage-world.component';
 import { CreateWorldComponent } from './components/create-world/create-world.component';
 import { AboutAppComponent } from './components/about-app/about-app.component';
+import { UpdateWorldComponent } from './components/update-world/update-world.component';
+import { JoinWorldComponent } from './components/join-world/join-world.component';
+import { ViewMembersComponent } from './components/view-members/view-members.component';
 
 
 @NgModule({
@@ -19,6 +22,6 @@ import { AboutAppComponent } from './components/about-app/about-app.component';
     HomePageRoutingModule,
     AngularMaterialModule
   ],
-  declarations: [HomePage,ManageWorldComponent,CreateWorldComponent,AboutAppComponent,]
+  declarations: [HomePage,ManageWorldComponent,CreateWorldComponent,AboutAppComponent,UpdateWorldComponent,JoinWorldComponent,ViewMembersComponent]
 })
 export class HomePageModule {}

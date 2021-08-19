@@ -9,6 +9,7 @@ import { CreateWorldComponent } from '../create-world/create-world.component';
 import { JoinWorldComponent } from '../join-world/join-world.component';
 import { UpdateWorldComponent } from '../update-world/update-world.component';
 import { ViewMembersComponent } from '../view-members/view-members.component';
+import { WorldChatComponent } from '../world-chat/world-chat.component';
 
 @Component({
   selector: 'app-manage-world',
@@ -40,7 +41,7 @@ export class ManageWorldComponent implements OnInit {
     this.alertCreater.alert({
       header: 'Are you Sure?',
       message: 'you want to delete the world',
-      
+
       buttons: [
         { text: 'Cancel' },
         {
@@ -55,7 +56,7 @@ export class ManageWorldComponent implements OnInit {
                 console.log(`Unable to delete world =>`, err);
               })
           }
-          
+
         }
       ]
     })
@@ -77,11 +78,11 @@ export class ManageWorldComponent implements OnInit {
     return await modal.present();
   }
 
-  async presentEditWorldModal(world:World) {
+  async presentEditWorldModal(world: World) {
 
     const modal = await this.modalController.create({
-      componentProps:{
-        'world':world
+      componentProps: {
+        'world': world
       },
       component: UpdateWorldComponent,
       cssClass: 'my-custom-class',
@@ -110,11 +111,11 @@ export class ManageWorldComponent implements OnInit {
     return await modal.present();
   }
 
-  async presentViewMembersModal(world:World) {
+  async presentViewMembersModal(world: World) {
 
     const modal = await this.modalController.create({
-      componentProps:{
-        'world':world
+      componentProps: {
+        'world': world
       },
       component: ViewMembersComponent,
       cssClass: 'my-custom-class',
@@ -127,5 +128,21 @@ export class ManageWorldComponent implements OnInit {
     })
     return await modal.present();
   }
+  async presentChatModal(world: World) {
 
+    const modal = await this.modalController.create({
+      componentProps: {
+        'world': world
+      },
+      component: WorldChatComponent,
+      cssClass: 'my-custom-class',
+      swipeToClose: true,
+      presentingElement: await this.modalController.getTop(),
+      mode: 'ios'
+    });
+    modal.onDidDismiss().then((res) => {
+      this.getWorldListForUser();
+    })
+    return await modal.present();
+  }
 }

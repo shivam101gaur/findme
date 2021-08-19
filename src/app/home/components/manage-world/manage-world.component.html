@@ -32,10 +32,10 @@
         </ion-item-option>
       </ion-item-options>
 
-      <ion-item button detail="false">
+      <ion-item button (click)="presentChatModal(world)" detail="false">
         <ion-label>{{world.name}}</ion-label>
         <ion-icon slot="start" name="earth-outline" size="large"></ion-icon>
-        <ion-button (click)="presentViewMembersModal(world)" expand="block" color="secondary" fill="clear" shape="round">
+        <ion-button (click)="$event.stopPropagation();presentViewMembersModal(world)" expand="block" color="secondary" fill="clear" shape="round">
           <ion-badge mode="ios" color="secondary">
 
             {{ world.members.length }}

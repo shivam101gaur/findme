@@ -3,6 +3,11 @@
   (ionScrollEnd)="logScrollEnd()" -->
   <ion-header>
     <ion-toolbar color="secondary">
+      <ion-buttons slot="secondary">
+        <ion-button (click)="cancel()" >
+          <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+        </ion-button>
+        </ion-buttons>
       <ion-title  > {{world.name.toUpperCase()}}</ion-title>
     </ion-toolbar>
   </ion-header>

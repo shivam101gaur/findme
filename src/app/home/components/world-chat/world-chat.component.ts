@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { World } from 'src/app/models/world.model';
 
 @Component({
@@ -9,10 +10,13 @@ import { World } from 'src/app/models/world.model';
 export class WorldChatComponent implements OnInit {
 
   @Input() world: World;
+  cancel() {
+    this.modalController.dismiss()
+  }
 
 
-  constructor() { }
+  constructor(private modalController: ModalController,) { }
 
-  ngOnInit() {}
+  ngOnInit() {  }
 
 }

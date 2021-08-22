@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as Vara from 'vara';
 import { MusicControllerService } from '../services/music-controller.service';
 
 @Component({
@@ -27,18 +28,56 @@ export class WelcomePage implements OnInit {
 
   // 📄 controlling the game title animation here
   controlWelcomeAnimation(callrepeat?: number) {
+    // shadowsIntoLightFont.json
+    const sigAnime = new Vara("#signatureContainer", "/assets/shadowsIntoLightFont.json", [
+      {
+        text: `by`,
+        color: "white",
+        duration: 100,
+        id: "by",
+        autoAnimation: false,
+      },
+      {
+        text: `  ShivamGaur`,
+        color: "red",
+        duration: 2000,
+        id: "firstName",
+        autoAnimation: false,
+      },
+      // {
+        //   text: `      gaur`,
+        //   color: "white",
+        //   duration: 1400,
+        //   id: "secondName",
+        //   autoAnimation: false,
+        // },
+      ], {
+        fontSize: 30,
+        strokeWidth: 2
+      });
+      sigAnime.ready(() => {
+        
+        // sigAnime.draw("signature")
+        sigAnime.playAll()
+      })
+      
 
     setTimeout(() => {
 
       const title_div = document.getElementById("titleDiv");
-      // 📄 adding and starting animation to title div
-      title_div.classList.add('fade_in');
-      
+
       // if HTML DIV with id="titleDiv" is loaded and found and then stored in title_div variable
       if (title_div) {
 
+        // 📄 adding and starting animation to title div
+        title_div.classList.add('fade_in');
+  
+
+
+
+
         (document as any).fonts.ready.then(() => {
-          console.log('fonts loaded'); 
+          console.log('fonts loaded');
           //📄 inserting game title in DOM
           title_div.innerHTML = this.game_name;
         });
@@ -49,15 +88,27 @@ export class WelcomePage implements OnInit {
           // 📄 removing animation class from title DIV
           // FIXME removing fade in class, brings back the white font color of title after animation!!
           // title_div.classList.remove('fade_in');
+          
+            sigAnime.animationEnd(() => {
+              // FIXME removing fade in class, brings back the white font color of title after animation!!
+              // title_div.classList.remove('fade_in');
+              title_div.classList.add('fade_out');
+              // 📑 " welcome already completed " Flag in session storage
+              // sessionStorage.setItem('welcomeCompleted', "true");
+              
+              // 📄 routing to authentication module
+              // this.router.navigate(['../authentication'], { relativeTo: this.activated_route })
+          })
 
           // 📑 " welcome already completed " Flag in session storage
-          sessionStorage.setItem('welcomeCompleted',"true"); 
+          // sessionStorage.setItem('welcomeCompleted',"true"); 
 
           // 📄 routing to authentication module
-          this.router.navigate(['../authentication'], { relativeTo: this.activated_route })
+          // this.router.navigate(['../authentication'], { relativeTo: this.activated_route })
 
         })
-      } 
+
+      }
       // keep trying till HTML div with id="titleDiv" is loaded n found
       else {
         // call itself till titleDiv is not loaded (max 5 times)

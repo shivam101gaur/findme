@@ -3,12 +3,19 @@
 
     <div id="titleDiv" class="title " *ngIf="game_on">
     </div>
+    <br>
+    <br> <br> <br>
+
+
+    <div id="signatureContainer" style="width: 100%;position: absolute;top:55%;left:40%">
+    </div>
+
     <div class="title" *ngIf="!game_on">
         <button autofocus="true" class="startbtn" mat-raised-button color="accent" (click)="start_game()">START &nbsp;
             <mat-icon>play_circle_outline</mat-icon>
         </button>
     </div>
- 
+
 
 
     <div *ngIf="game_on" class="bottomcorner">

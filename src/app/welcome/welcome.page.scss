@@ -5,6 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 .title {
     display: flex;
@@ -34,6 +35,12 @@
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
+.fade_out {
+    animation-delay: 24s;
+    animation: fadeOutAnimation ease-in 15s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
 
 @keyframes fadeInAnimation {
     0% {
@@ -42,13 +49,16 @@
     60% {
         color: greenyellow;
     }
-    80% {
+    100% {
         color: rgb(255, 174, 0);
     }
-    90% {
-        color: black;
+}
+@keyframes fadeOutAnimation {
+    0%{
+        color: rgb(255, 174, 0);
     }
+    
     100% {
-        color: black;
+        color: rgb(0, 0, 0);
     }
 }

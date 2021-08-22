@@ -13,7 +13,10 @@
   </ion-header>
   <ion-content [scrollX]="false" [scrollEvents]="true">
 
-  <div style="position:absolute;bottom:0px" slot="fixed">
-    <h1>Fixed Content</h1>
+  <div style="position:absolute;bottom:0px;width: 100%;" slot="fixed">
+    <ion-button (click)="sayhi()" expand="block" fill="solid" shape="round">
+      Say Hi
+    </ion-button>
+    
   </div>
 </ion-content>

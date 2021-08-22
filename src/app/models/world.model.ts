@@ -3,7 +3,8 @@ export interface World {
     name: string;
     password: string;
     created_by: string;
-    members: string[]
+    members: string[];
+    chat: Message[]
 }
 
 
@@ -14,8 +15,11 @@ export class World implements World {
 
 export interface Message {
 
-    from:string;
-    type:'text'|'image'|'video'|'pdf'
+    _id?: string;
+    from?: string;
+    type?: 'text' | 'image' | 'video' | 'pdf';
+    timeStamp?: string
+    content?: string;
 
 }
 

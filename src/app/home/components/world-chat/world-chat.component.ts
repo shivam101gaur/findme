@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { World } from 'src/app/models/world.model';
-import { io } from "socket.io-client";
+import { SocketConnectionService } from 'src/app/services/socket-connection.service';
 import { apiAddress } from 'src/environments/environment';
 
 @Component({
@@ -17,14 +17,22 @@ export class WorldChatComponent implements OnInit {
   }
 
 
-  constructor(private modalController: ModalController,) { }
+  constructor(private modalController: ModalController,public socket:SocketConnectionService) { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+
+    this.socket.startConnection()
+  }
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.socket.endConnection()
+  }
 
   sayhi() {
-
-    const socket = io(apiAddress, { transports: ['websocket'] })
-    socket.connect()
+this.socket.emitsendMessage({
+  content:'Hello from angular'
+})
 
   }
 

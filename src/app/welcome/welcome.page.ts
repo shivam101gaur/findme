@@ -28,7 +28,11 @@ export class WelcomePage implements OnInit {
 
   // 📄 controlling the game title animation here
   controlWelcomeAnimation(callrepeat?: number) {
+    // Check Animation Fonts => https://github.com/akzhy/Vara/tree/master/fonts
     // shadowsIntoLightFont.json
+    // ParisienneFont.json
+    // SatisfySLFont.json
+    // PacificoSLOFont.json
     const sigAnime = new Vara("#signatureContainer", "/assets/shadowsIntoLightFont.json", [
       {
         text: `by`,
@@ -55,12 +59,7 @@ export class WelcomePage implements OnInit {
         fontSize: 30,
         strokeWidth: 2
       });
-      sigAnime.ready(() => {
-        
-        // sigAnime.draw("signature")
-        sigAnime.playAll()
-      })
-      
+   
 
     setTimeout(() => {
 
@@ -88,11 +87,17 @@ export class WelcomePage implements OnInit {
           // 📄 removing animation class from title DIV
           // FIXME removing fade in class, brings back the white font color of title after animation!!
           // title_div.classList.remove('fade_in');
-          
+           sigAnime.ready(() => {
+                sigAnime.playAll()
+              })
+              sigAnime.playAll()
             sigAnime.animationEnd(() => {
+
+             
               // FIXME removing fade in class, brings back the white font color of title after animation!!
               // title_div.classList.remove('fade_in');
               title_div.classList.add('fade_out');
+              document.getElementById("signatureContainer").classList.add('fade_out');
               // 📑 " welcome already completed " Flag in session storage
               // sessionStorage.setItem('welcomeCompleted', "true");
               

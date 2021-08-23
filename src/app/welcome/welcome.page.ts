@@ -34,32 +34,32 @@ export class WelcomePage implements OnInit {
     // SatisfySLFont.json
     // PacificoSLOFont.json
     const sigAnime = new Vara("#signatureContainer", "/assets/shadowsIntoLightFont.json", [
+      // {
+      //   text: `by`,
+      //   color: "white",
+      //   duration: 100,
+      //   id: "by",
+      //   autoAnimation: false,
+      // },
       {
-        text: `by`,
+        text: `. . . .shivamgaur`,
         color: "white",
-        duration: 100,
-        id: "by",
-        autoAnimation: false,
-      },
-      {
-        text: `  ShivamGaur`,
-        color: "red",
         duration: 2000,
-        id: "firstName",
+        id: "name",
         autoAnimation: false,
       },
       // {
-        //   text: `      gaur`,
-        //   color: "white",
-        //   duration: 1400,
-        //   id: "secondName",
-        //   autoAnimation: false,
-        // },
-      ], {
-        fontSize: 30,
-        strokeWidth: 2
-      });
-   
+      //   text: `      gaur`,
+      //   color: "white",
+      //   duration: 1400,
+      //   id: "secondName",
+      //   autoAnimation: false,
+      // },
+    ], {
+      fontSize: 20,
+      strokeWidth: 3
+    });
+
 
     setTimeout(() => {
 
@@ -70,7 +70,7 @@ export class WelcomePage implements OnInit {
 
         // 📄 adding and starting animation to title div
         title_div.classList.add('fade_in');
-  
+
 
 
 
@@ -87,22 +87,33 @@ export class WelcomePage implements OnInit {
           // 📄 removing animation class from title DIV
           // FIXME removing fade in class, brings back the white font color of title after animation!!
           // title_div.classList.remove('fade_in');
-           sigAnime.ready(() => {
-                sigAnime.playAll()
-              })
-              sigAnime.playAll()
-            sigAnime.animationEnd(() => {
+          sigAnime.ready(() => {
+            sigAnime.playAll()
+          })
+          sigAnime.playAll()
+          sigAnime.animationEnd(() => {
 
-             
-              // FIXME removing fade in class, brings back the white font color of title after animation!!
+
+            // FIXME removing fade in class, brings back the white font color of title after animation!!
+            // title_div.classList.remove('fade_in');
+            // title_div.classList.add('fade_out');
+            // document.getElementById("signatureContainer").classList.add('fade_out');
+            // 📑 " welcome already completed " Flag in session storage
+            // sessionStorage.setItem('welcomeCompleted', "true");
+            setTimeout(() => {
+
+              
               // title_div.classList.remove('fade_in');
               title_div.classList.add('fade_out');
-              document.getElementById("signatureContainer").classList.add('fade_out');
-              // 📑 " welcome already completed " Flag in session storage
-              // sessionStorage.setItem('welcomeCompleted', "true");
-              
-              // 📄 routing to authentication module
-              // this.router.navigate(['../authentication'], { relativeTo: this.activated_route })
+
+              setTimeout(() => {
+                
+                this.router.navigate(['../authentication'], { relativeTo: this.activated_route })
+              }, 2000);
+
+            }, 1500);
+            // 📄 routing to authentication module
+            // this.router.navigate(['../authentication'], { relativeTo: this.activated_route })
           })
 
           // 📑 " welcome already completed " Flag in session storage

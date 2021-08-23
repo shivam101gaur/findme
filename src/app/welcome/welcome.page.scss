@@ -1,4 +1,4 @@
-.maincontainer {
+#maincontainer {
     height: 100%;
     width: 100%;
     background-color: black;
@@ -6,6 +6,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    transition: all 1500ms ease-out;
 }
 .title {
     display: flex;
@@ -16,6 +17,10 @@
     color: white;
     height: fit-content;
     width: fit-content;
+}
+
+#titleDiv{
+    transition: all 1500ms ease-out;
 }
 
 .bottomcorner {
@@ -36,8 +41,8 @@
     animation-fill-mode: forwards;
 }
 .fade_out {
-    animation-delay: 10s;
-    animation: fadeOutAnimation ease-in 3.5s;
+
+    animation: fadeOutAnimation ease-in 1.5s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }

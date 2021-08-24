@@ -28,33 +28,20 @@ export class WelcomePage implements OnInit {
 
   // 📄 controlling the game title animation here
   controlWelcomeAnimation(callrepeat?: number) {
+   
     // Check Animation Fonts => https://github.com/akzhy/Vara/tree/master/fonts
     // shadowsIntoLightFont.json
     // ParisienneFont.json
     // SatisfySLFont.json
     // PacificoSLOFont.json
     const sigAnime = new Vara("#signatureContainer", "/assets/shadowsIntoLightFont.json", [
-      // {
-      //   text: `by`,
-      //   color: "white",
-      //   duration: 100,
-      //   id: "by",
-      //   autoAnimation: false,
-      // },
       {
         text: `. . . .shivamgaur`,
         color: "white",
         duration: 2000,
         id: "name",
         autoAnimation: false,
-      },
-      // {
-      //   text: `      gaur`,
-      //   color: "white",
-      //   duration: 1400,
-      //   id: "secondName",
-      //   autoAnimation: false,
-      // },
+      }
     ], {
       fontSize: 20,
       strokeWidth: 3
@@ -71,10 +58,6 @@ export class WelcomePage implements OnInit {
         // 📄 adding and starting animation to title div
         title_div.classList.add('fade_in');
 
-
-
-
-
         (document as any).fonts.ready.then(() => {
           console.log('fonts loaded');
           //📄 inserting game title in DOM
@@ -84,44 +67,21 @@ export class WelcomePage implements OnInit {
         // 📄 keeping track of when animation ends and then executing a callback fn
         title_div.addEventListener('animationend', () => {
 
-          // 📄 removing animation class from title DIV
-          // FIXME removing fade in class, brings back the white font color of title after animation!!
-          // title_div.classList.remove('fade_in');
           sigAnime.ready(() => {
             sigAnime.playAll()
           })
           sigAnime.playAll()
           sigAnime.animationEnd(() => {
-
-
-            // FIXME removing fade in class, brings back the white font color of title after animation!!
-            // title_div.classList.remove('fade_in');
-            // title_div.classList.add('fade_out');
-            // document.getElementById("signatureContainer").classList.add('fade_out');
-            // 📑 " welcome already completed " Flag in session storage
-            // sessionStorage.setItem('welcomeCompleted', "true");
             setTimeout(() => {
-
-              
-              // title_div.classList.remove('fade_in');
               title_div.classList.add('fade_out');
-
               setTimeout(() => {
-                
+                // 📑 " welcome already completed " Flag in session storage
+                sessionStorage.setItem('welcomeCompleted', "true");
                 this.router.navigate(['../authentication'], { relativeTo: this.activated_route })
               }, 2000);
 
             }, 1500);
-            // 📄 routing to authentication module
-            // this.router.navigate(['../authentication'], { relativeTo: this.activated_route })
           })
-
-          // 📑 " welcome already completed " Flag in session storage
-          // sessionStorage.setItem('welcomeCompleted',"true"); 
-
-          // 📄 routing to authentication module
-          // this.router.navigate(['../authentication'], { relativeTo: this.activated_route })
-
         })
 
       }
@@ -133,12 +93,4 @@ export class WelcomePage implements OnInit {
     });
 
   }
-
-
-
-
-
-
-
-
 }

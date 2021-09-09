@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { io } from "socket.io-client";
 import { apiAddress } from 'src/environments/environment';
 import { Message } from '../models/world.model';
@@ -11,39 +12,40 @@ export class SocketConnectionService {
   private socket = io(apiAddress, { transports: ['websocket'] })
 
 
-  constructor() { }
+  constructor() {
+    this.socket.on('disconnect', () => {
+      this.socket.off("connect")
+      this.socket.off("msgfromserver")
+      console.log('Socket connection ended')
+    });
+    this.socket.on("connect", () => {
+      console.log('Socket connection started')
+      console.log(this.socket.connected);
+    })
+  }
   startConnection() {
 
     if (!this.socket.connected) {
       this.socket.connect()
-      this.socket.on("connect", () => {
-        console.log('Socket connection started')
-        console.log(this.socket.connected);
-        if (this.socket.connected) {
-          this.listenToMessages()
-        }
-      })
-
     } else {
       console.log('Socket already connected!')
     }
+
   }
+
   endConnection() {
     this.socket.disconnect();
-    if (!this.socket.connected) {
-      console.log('Socket connection ended')
-    }
   }
 
-  emitsendMessage(message: Message) {
-    this.socket.emit("sendMessage", message)
+  sendMessage(message: Message,worldId:string) {
+    this.socket.emit("msgfromuser", {message,worldId: worldId})
   }
 
-  listenToMessages() {
-    console.log('started listenting to backend')
-
-    this.socket.on("receiveMessage", message => {
-      alert('message received' + message.content)
+  getMessages() {
+    return new Observable((observer) => {
+      this.socket.on("msgfromserver", (message, user) => {
+        observer.next(message)
+      })
     })
   }
 

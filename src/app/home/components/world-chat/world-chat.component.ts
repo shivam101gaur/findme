@@ -17,11 +17,15 @@ export class WorldChatComponent implements OnInit {
   }
 
 
-  constructor(private modalController: ModalController,public socket:SocketConnectionService) { }
+  constructor(private modalController: ModalController, public socket: SocketConnectionService) { }
 
-  ngOnInit() { 
+  ngOnInit() {
 
     this.socket.startConnection()
+    this.socket.getMessages().subscribe((message)=>{
+      console.log('Message Received')
+      console.log(message)
+    })
   }
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
@@ -30,9 +34,10 @@ export class WorldChatComponent implements OnInit {
   }
 
   sayhi() {
-this.socket.emitsendMessage({
-  content:'Hello from angular'
-})
+    console.log('sending msg from world Id : '+this.world._id)
+    this.socket.sendMessage({
+      content: 'Hello from angular'
+    },this.world._id)
 
   }
 

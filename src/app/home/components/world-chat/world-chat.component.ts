@@ -36,7 +36,8 @@ export class WorldChatComponent implements OnInit {
   sayhi() {
     console.log('sending msg from world Id : '+this.world._id)
     this.socket.sendMessage({
-      content: 'Hello from angular'
+      content: 'Hello from angular',
+      from:JSON.parse(sessionStorage.getItem('currentUser'))._id,
     },this.world._id)
 
   }

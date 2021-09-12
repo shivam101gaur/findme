@@ -34,7 +34,6 @@ export class WorldChatComponent implements OnInit {
     this.getWorldMembers()
     setTimeout(() => {
       this.scrollToBottom(1500)
-      this.msgInpBox.setFocus()
     }, 500)
     this.getworld()
   }

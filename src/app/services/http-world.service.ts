@@ -19,7 +19,7 @@ export class HttpWorldService {
   }
   // 📝 get world by world name
   getWorldByName(name: string) {
-    return this.http.get<[World]>(`${this.world_api_address}${name}`)
+    return this.http.get<World>(`${this.world_api_address}${name}`)
   }
   // 📝 get all worlds where a user is present / is a member of that world
   getWorldByUserId(userId: string) {

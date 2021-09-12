@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
 import { io } from "socket.io-client";
 import { apiAddress } from 'src/environments/environment';
-import { Message } from '../models/world.model';
+import { Message, World } from '../models/world.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SocketConnectionService {
 
-  private socket = io(apiAddress, { transports: ['websocket'] })
+  private socket = io(apiAddress, { transports: ['websocket'], autoConnect: false })
 
 
   constructor() {
@@ -23,9 +23,10 @@ export class SocketConnectionService {
       console.log(this.socket.connected);
     })
   }
-  startConnection() {
-
+  startConnection(world: World) {
+    
     if (!this.socket.connected) {
+      this.socket.io.opts.query = { "worldId": world._id, "worldName": world.name }
       this.socket.connect()
     } else {
       console.log('Socket already connected!')
@@ -37,13 +38,14 @@ export class SocketConnectionService {
     this.socket.disconnect();
   }
 
-  sendMessage(message: Message,worldId:string) {
-    this.socket.emit("msgfromuser", {message,worldId: worldId})
+  sendMessage(message: Message, worldId: string) {
+    this.socket.emit("msgfromuser", { message, worldId: worldId })
   }
 
   getMessages() {
-    return new Observable((observer) => {
-      this.socket.on("msgfromserver", (message, user) => {
+    return new Observable((observer:Observer<Message[]>) => {
+
+      this.socket.on("msgfromserver", (message:Message[]) => {
         observer.next(message)
       })
     })

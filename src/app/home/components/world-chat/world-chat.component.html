@@ -1,22 +1,62 @@
-<!-- (ionScrollStart)="logScrollStart()"
-  (ionScroll)="logScrolling($event)"
-  (ionScrollEnd)="logScrollEnd()" -->
-  <ion-header>
-    <ion-toolbar color="secondary">
-      <ion-buttons slot="secondary">
-        <ion-button (click)="cancel()" >
-          <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
-        </ion-button>
-        </ion-buttons>
-      <ion-title  > {{world.name.toUpperCase()}}</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content [scrollX]="false" [scrollEvents]="true">
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="secondary">
+      <ion-button (click)="cancel()">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title> {{world.name?.toUpperCase()}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content #content [scrollX]="false" [forceOverscroll]="true" [scrollEvents]="true">
 
-  <div style="position:absolute;bottom:0px;width: 100%;" slot="fixed">
-    <ion-button (click)="sayhi()" expand="block" fill="solid" shape="round">
-      Say Hi
-    </ion-button>
-    
+  <div *ngIf="user" class="chat">
+    <div class="messagecontainer" [class]="(user._id==message.from)?'mymessagecontainer':'yourmessagecontainer'"
+      *ngFor="let message of messageList ;let i = index; trackBy: trackMessages">
+
+      <div *ngIf="(messageList[i-1]?.timeStamp | date: 'd MMM y')!=(messageList[i]?.timeStamp | date: 'd MMM y')"
+        class="date">
+        {{message.timeStamp | date: 'EEE , d MMM y'}}
+      </div>
+
+      <div class="senderavat">
+
+        <ion-avatar>
+          <img [src]="'https://avatars.dicebear.com/api/big-smile/'+(peopleMap?.get(message?.from)?.name)+'.svg'">
+        </ion-avatar>
+
+
+      </div>
+
+      <div class="messagewrapper" [class]="(user._id==message.from)?'mymessage':'yourmessage'">
+
+        <div class="msgsender">
+          <span style="margin-right: 5px;">
+            {{peopleMap?.get(message?.from)?.name|titlecase}}
+          </span>
+
+          <span style="margin-left: 5px;">
+            {{message.timeStamp | date: 'h:mm a'}}
+          </span>
+        </div>
+
+        <div class="message">
+          {{message.content}}
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
 </ion-content>
+
+<ion-footer>
+  <ion-item style="width: 100%;">
+    <ion-textarea style="max-height: 15vh;" (click)="scrollToBottom()" autoGrow="true" #msgInpArea
+      [(ngModel)]="messageInput" placeholder="Send your message ..."></ion-textarea>
+    <ion-button class="sendbtn" fill="clear" [disabled]="!messageInput?.trim()?.length" (click)="send()">
+      <ion-icon name="send" slot="icon-only"></ion-icon>
+    </ion-button>
+  </ion-item>
+</ion-footer>

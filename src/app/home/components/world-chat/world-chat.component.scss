@@ -1,0 +1,125 @@
+ion-textarea {
+    --color: rgb(80, 80, 80);
+    --background: rgba(255, 255, 255, 0);
+}
+
+.chat {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5%;
+}
+.messagecontainer {
+    margin: 0.5% 0;
+    padding: 2.5%;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+.senderavat {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.mymessagecontainer {
+    flex-direction: row-reverse;
+}
+.yourmessagecontainer {
+    flex-direction: row;
+}
+.date {
+    background-color: #8080808c;
+    backdrop-filter: blur(3vmin);
+    text-align: center;
+    color: white;
+    flex-basis: 100%;
+    margin: 0;
+    margin-bottom: 2.5%;
+    padding: 1.5%;
+    border-radius: 8px;
+}
+.messagewrapper {
+    max-width: 60%;
+    margin: 0 2.5%;
+    align-self: flex-end;
+    border-radius: 5px;
+}
+.message {
+    white-space: pre-line;
+    padding: 5px;
+    color: black;
+}
+
+.yourmessage {
+    $bg: rgba(75, 75, 189, 0.397);
+    background-color: $bg;
+    backdrop-filter: blur(5px);
+    // color: white;
+    &:after {
+        transform: rotate(-90deg);
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        right: 100%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-bottom-color: $bg;
+        border-width: 8px;
+    }
+    .msgsender {
+        padding: 5px;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        // background-color: $bg;
+       span{
+        color: #7c2baebf;
+       }
+    }
+}
+
+.mymessage {
+    $bg: #6adecee6;
+    background-color: $bg;
+    backdrop-filter: blur(5px);
+    // color: white;
+    &:after {
+        transform: rotate(90deg);
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        left: 100%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-bottom-color: $bg;
+        border-width: 8px;
+    }
+    .msgsender {
+        padding: 5px;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        // background-color: $bg;
+       span{
+        color: rgba(13, 112 ,13 , 79%);
+       }
+    }
+}
+
+.sendbtn {
+    position: relative;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}

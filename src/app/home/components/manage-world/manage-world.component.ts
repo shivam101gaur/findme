@@ -70,7 +70,8 @@ export class ManageWorldComponent implements OnInit {
       cssClass: 'my-custom-class',
       swipeToClose: true,
       presentingElement: await this.modalController.getTop(),
-      mode: 'ios'
+      mode: 'ios',
+      backdropDismiss:false,
     });
     modal.onDidDismiss().then((res) => {
       this.getWorldListForUser();
@@ -88,7 +89,8 @@ export class ManageWorldComponent implements OnInit {
       cssClass: 'my-custom-class',
       swipeToClose: true,
       presentingElement: await this.modalController.getTop(),
-      mode: 'ios'
+      mode: 'ios',
+      backdropDismiss:false,
     });
     modal.onDidDismiss().then((res) => {
       this.getWorldListForUser();
@@ -103,7 +105,8 @@ export class ManageWorldComponent implements OnInit {
       cssClass: 'my-custom-class',
       swipeToClose: true,
       presentingElement: await this.modalController.getTop(),
-      mode: 'ios'
+      mode: 'ios',
+      backdropDismiss:false,
     });
     modal.onDidDismiss().then((res) => {
       this.getWorldListForUser();
@@ -121,7 +124,8 @@ export class ManageWorldComponent implements OnInit {
       cssClass: 'my-custom-class',
       swipeToClose: true,
       presentingElement: await this.modalController.getTop(),
-      mode: 'ios'
+      mode: 'ios',
+      backdropDismiss:false,
     });
     modal.onDidDismiss().then((res) => {
       this.getWorldListForUser();
@@ -138,7 +142,8 @@ export class ManageWorldComponent implements OnInit {
       cssClass: 'my-custom-class',
       swipeToClose: true,
       presentingElement: await this.modalController.getTop(),
-      mode: 'ios'
+      mode: 'ios',
+      backdropDismiss:false,
     });
     modal.onDidDismiss().then((res) => {
       this.getWorldListForUser();

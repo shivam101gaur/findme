@@ -12,7 +12,8 @@ const routes: Routes = [
     children:[
       { path:'',redirectTo:'manage_worlds',pathMatch:"full" },
       { path:'manage_worlds',component:ManageWorldComponent },
-      { path:'about_app',component:AboutAppComponent }
+      { path:'about_app',component:AboutAppComponent },
+      { path:'settings',component:AboutAppComponent },
 
     ]
   },

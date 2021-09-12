@@ -57,7 +57,7 @@ export class WorldChatComponent implements OnInit {
 
   async scrollToBottom(scrollTime: number = 300) {
     this.content.scrollToBottom(scrollTime).then(() => {
-      this.msgInpBox.setFocus()
+      // this.msgInpBox.setFocus()
     })
   }
 

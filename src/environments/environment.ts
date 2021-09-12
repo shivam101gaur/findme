@@ -2,7 +2,7 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-export const apiAddress:string = "http://localhost:3000/"
+export const apiAddress:string = "https://findme-server-325808.el.r.appspot.com/"
 
 export const environment = {
   production: false

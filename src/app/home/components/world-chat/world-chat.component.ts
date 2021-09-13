@@ -6,7 +6,6 @@ import { Message, World } from 'src/app/models/world.model';
 import { HttpUserService } from 'src/app/services/http-user.service';
 import { HttpWorldService } from 'src/app/services/http-world.service';
 import { SocketConnectionService } from 'src/app/services/socket-connection.service';
-import { apiAddress } from 'src/environments/environment';
 
 @Component({
   selector: 'app-world-chat',
@@ -23,6 +22,8 @@ export class WorldChatComponent implements OnInit {
   messageInput: string;
   sample: World['chat']
 
+
+
   pageready:boolean;
 
   user: User = JSON.parse(sessionStorage.getItem('currentUser'))
@@ -33,6 +34,8 @@ export class WorldChatComponent implements OnInit {
   ngOnInit() {
     this.messageList = this.world.chat;
     this.getworld()
+
+
   }
 
 

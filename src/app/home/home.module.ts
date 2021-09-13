@@ -13,6 +13,7 @@ import { UpdateWorldComponent } from './components/update-world/update-world.com
 import { JoinWorldComponent } from './components/join-world/join-world.component';
 import { ViewMembersComponent } from './components/view-members/view-members.component';
 import { WorldChatComponent } from './components/world-chat/world-chat.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 
 @NgModule({
@@ -23,6 +24,6 @@ import { WorldChatComponent } from './components/world-chat/world-chat.component
     HomePageRoutingModule,
     AngularMaterialModule
   ],
-  declarations: [HomePage,ManageWorldComponent,CreateWorldComponent,AboutAppComponent,UpdateWorldComponent,JoinWorldComponent,ViewMembersComponent,WorldChatComponent]
+  declarations: [HomePage,ManageWorldComponent,CreateWorldComponent,AboutAppComponent,UpdateWorldComponent,JoinWorldComponent,ViewMembersComponent,WorldChatComponent,SettingsComponent]
 })
 export class HomePageModule {}

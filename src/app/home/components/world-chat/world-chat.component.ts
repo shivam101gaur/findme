@@ -23,18 +23,15 @@ export class WorldChatComponent implements OnInit {
   messageInput: string;
   sample: World['chat']
 
+  pageready:boolean;
+
   user: User = JSON.parse(sessionStorage.getItem('currentUser'))
   peopleMap = new Map<string, User>()
 
   constructor(private modalController: ModalController, public socket: SocketConnectionService, public http: HttpWorldService, public httpUser: HttpUserService, public alert: AlertController) { }
 
   ngOnInit() {
-
     this.messageList = this.world.chat;
-    this.getWorldMembers()
-    setTimeout(() => {
-      this.scrollToBottom(1500)
-    }, 500)
     this.getworld()
   }
 
@@ -45,6 +42,8 @@ export class WorldChatComponent implements OnInit {
         this.peopleMap.set(user._id, user)
       })
       console.log(this.peopleMap)
+      this.pageready=true
+      this.scrollToBottom(150)
     }, err => {
       this.alert.create({
         message: 'could not fetch world members'

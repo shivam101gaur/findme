@@ -3,7 +3,7 @@ import { createAvatar } from '@dicebear/avatars';
 import * as style from '@dicebear/avatars-male-sprites';
 
 @Component({
-  selector: 'app-avatar',
+  selector: 'avatar',
   templateUrl: './avatar.component.html',
   styleUrls: ['./avatar.component.scss'],
 })
@@ -15,7 +15,18 @@ export class AvatarComponent implements OnInit {
 
   @Input() set seed(value: string) {
     this.seedValue = value;
-    this.createAvat()
+    var temp=true
+    while(temp){
+
+      setTimeout(() => {
+        if(this.avat){
+
+          this.createAvat()
+          temp=false
+        }
+        
+      }, 500);
+    }
   }
 
   get seed(): string {

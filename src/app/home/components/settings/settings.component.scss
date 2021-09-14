@@ -3,9 +3,31 @@ ion-avatar  {
     height : 100% !important;  
     max-width: 150px !important;  //any size
     max-height: 150px !important;
-    position: absolute;
+    position: relative;
     right: 0;
     left: 0;    
     margin: auto;
-    top: 15%;
+    }
+
+    .usercard{
+        position: absolute;
+        right: 0;
+        left: 0;    
+        margin: auto;
+        top: 10%;
+        padding: 2.5%;
+    }
+    .edituser{
+        display: flex;
+        flex-direction: column;
+        padding: 1.5%;
+        margin: 1.5%;
+        justify-content: stretch;
+        align-items: stretch;
+    }
+    input{
+        font-size: 20px;
+        margin: 10px 0;
+        padding: 10px;
+        text-align: center;
     }

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { ToastOptions } from '@ionic/core';
 import { User } from 'src/app/models/user.model';
+import { AlertCreaterService } from 'src/app/services/alert-creater.service';
 import { HttpUserService } from 'src/app/services/http-user.service';
 import { ToasterService } from 'src/app/services/toaster.service';
 
@@ -29,7 +30,7 @@ export class LoginComponent implements OnInit {
     return this.login_form.get('user_password')
   }
 
-  constructor(public toaster: ToasterService, public httpUserService: HttpUserService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(public toaster: ToasterService, public httpUserService: HttpUserService, private router: Router, private activatedRoute: ActivatedRoute, private alertController: AlertCreaterService) { }
 
 
   ngOnInit() { }
@@ -43,7 +44,7 @@ export class LoginComponent implements OnInit {
     if (this.login_form.valid) {
       this.submit()
     } else {
-      alert('Take your time and enter details carefully :)')
+      this.alertController.alert({ message: 'Take your time and enter details carefully :)' })
     }
 
   }
@@ -51,21 +52,21 @@ export class LoginComponent implements OnInit {
   private submit() {
 
     this.httpUserService.getUserByName(this.user_name.value).subscribe((res: [User]) => {
-      console.log({res})
-      if(res.length<1){ alert('User could not be find!\nCheck your user name!');return }
+      console.log({ res })
+      if (res.length < 1) { this.alertController.alert({ header: 'Could not find User', message: 'check your user name!' }); return }
       const user = res[0]
       if (user.password == this.user_password.value) {
         sessionStorage.setItem("currentUser", JSON.stringify(user));
         console.log('login successfull');
-        if(user.name=='admin'){
+        if (user.name == 'admin') {
           this.router.navigate(['./admin'])
         }
-        else{
+        else {
           this.router.navigate(['./home'])
         }
 
       }
-    },(err)=>{
+    }, (err) => {
       alert('User could not be validated! Try again later')
     }
     )

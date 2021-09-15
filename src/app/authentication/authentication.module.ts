@@ -14,6 +14,7 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { HttpUserService } from '../services/http-user.service';
 import { HttpClient } from '@angular/common/http';
+import { HomePageModule } from '../home/home.module';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { HttpClient } from '@angular/common/http';
     IonicModule,
     AuthenticationPageRoutingModule,
     AngularMaterialModule,
+    HomePageModule
 
   ],
   declarations: [AuthenticationPage, LoginComponent,RegistrationComponent,ResetPasswordComponent]

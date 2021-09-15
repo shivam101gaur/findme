@@ -25,6 +25,7 @@ import { AvatarComponent } from './components/avatar/avatar.component';
     HomePageRoutingModule,
     AngularMaterialModule
   ],
-  declarations: [HomePage,ManageWorldComponent,CreateWorldComponent,AboutAppComponent,UpdateWorldComponent,JoinWorldComponent,ViewMembersComponent,WorldChatComponent,SettingsComponent,AvatarComponent]
+  declarations: [HomePage,ManageWorldComponent,CreateWorldComponent,AboutAppComponent,UpdateWorldComponent,JoinWorldComponent,ViewMembersComponent,WorldChatComponent,SettingsComponent,AvatarComponent],
+  exports:[AvatarComponent]
 })
 export class HomePageModule {}

@@ -7,7 +7,7 @@ import { Howl, Howler } from 'howler';
 export class MusicControllerService {
 
   _Howler = Howler;
-  sound_on: boolean = true;
+  sound_on: boolean = false;
   
   //storing current playing music here
   bgm_play_ref: any;
@@ -24,36 +24,48 @@ export class MusicControllerService {
 
 
 
-  constructor() { }
+  constructor() { 
+    this.bgm.on("play", ()=>{
+
+      this.sound_on = true
+      console.log('bgm playing')
+    })
+    this.bgm.on("pause", ()=>{
+
+      this.sound_on = false
+      console.log('bgm paused')
+    })
+  }
 
   //start the background music here
   play_bgm() {
     if (!this.bgm_play_ref) {
       this.bgm_play_ref = this.bgm.play('audible');
-      this.bgm.once('play', function () {
-        console.log('bgm playing')
-        this.sound_on = true;
-      })
     }
 
   }
 
   //mute/unmute the music playing in howler
   toggle_sound() {
+    if(!this.bgm_play_ref){
+     this.play_bgm()
+     return
+
+    }
     if (this.sound_on) {
       // this.bgm_play_ref.
       //stop track / mute sound
       // this._Howler.volume(0)
       // this._Howler.mute(true)
       this.bgm.pause(this.bgm_play_ref)
-      this.sound_on = false;
+
     }
     else {
       //play track/unmute track
       // this._Howler.volume(1)
       // this._Howler.mute(false)
       this.bgm.play(this.bgm_play_ref)
-      this.sound_on = true
+
     }
   }
 

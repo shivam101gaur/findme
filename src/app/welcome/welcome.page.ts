@@ -13,7 +13,7 @@ export class WelcomePage implements OnInit {
   game_name = "FIND-ME";
   game_on: boolean = false;
 
-  public get sound_btn(): string { return (this.music_controller.sound_on) ? "volume_up" : "volume_off" }
+  public get sound_btn(): string { return (this.music_controller.sound_on) ? "volume_up": "volume_off"}
 
   constructor(public music_controller: MusicControllerService, public router: Router, public activated_route: ActivatedRoute) { }
 

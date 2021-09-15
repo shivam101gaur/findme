@@ -1,11 +1,11 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar>
+  <ion-toolbar *ngIf="formMutated" >
 
-    <ion-button slot="end" class="ion-margin-end" color="danger">
+    <ion-button (click)="reset()" slot="end" class="ion-margin-end" color="danger">
       <ion-icon slot="start" name="arrow-undo-sharp"></ion-icon>
       Reset
     </ion-button>
-    <ion-button slot="end" class="ion-margin-end" color="primary">
+    <ion-button (click)="save()" slot="end" class="ion-margin-end" color="primary">
       <ion-icon slot="start" name="save"></ion-icon>
       Save
     </ion-button>
@@ -17,22 +17,22 @@
 
 
     <ion-avatar>
-      <!-- <avatar [seed]="'shivam'" ></avatar> -->
-      <img [src]="'https://avatars.dicebear.com/api/avataaars/'+userNameFormControl.value+'.svg'" alt="image">
+      <avatar [seed]="userNameFormControl.value??''" ></avatar>
+      <!-- <img [src]="'https://avatars.dicebear.com/api/avataaars/'+userNameFormControl.value+'.svg'" alt="image"> -->
     </ion-avatar>
 
     <div class="edituser">
 
 
-        <input type="text" [formControl]="userNameFormControl">
-        <input type="password" [formControl]="userPasswordFormControl" matInput pattern="[0-9]*" maxlength=4 minlength=1
+        <input (input)="checkFormMutation()" type="text" [formControl]="userNameFormControl">
+        <input  (input)="checkFormMutation()" type="password" [formControl]="userPasswordFormControl" matInput pattern="[0-9]*" maxlength=4 minlength=1
           inputmode="numeric" required>
 
 
-      <ion-button (click)="musicController.toggle_sound()"  mode="ios" size="large" class="ion-margin-top" color="light">
-        <ion-icon size="large" slot="end" name="volume-medium-outline"></ion-icon>
-        Sound
-        <ion-toggle [value]="musicController.sound_on" style="position: absolute;right: 0;" mode='ios' color="primary"></ion-toggle>
+      <ion-button (click)="musicController.toggle_sound()"  mode="ios" size="large" class="ion-margin-top" [color]="musicController.sound_on?'success':'light'">
+        <ion-icon size="large" slot="end" [name]="musicController.sound_on?'volume-medium-outline':'volume-mute-outline'"></ion-icon>
+        Music
+        <ion-toggle [checked]="musicController.sound_on" style="position: absolute;right: 0;" mode='ios' color="danger"></ion-toggle>
       </ion-button>
 
 
@@ -44,5 +44,5 @@
 
 
 <ion-footer class="ion-padding ion-no-border">
-  <ion-button size="large" margin color="danger" expand="block">Logout </ion-button>
+  <ion-button (click)="logout()" size="large" margin color="danger" expand="block">Logout </ion-button>
 </ion-footer>

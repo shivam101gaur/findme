@@ -11,22 +11,11 @@ import * as style from '@dicebear/avatars-male-sprites';
 
 export class AvatarComponent implements OnInit {
 
-  private seedValue!: string;
+  private seedValue: string = 'rick';
 
   @Input() set seed(value: string) {
     this.seedValue = value;
-    var temp=true
-    while(temp){
-
-      setTimeout(() => {
-        if(this.avat){
-
-          this.createAvat()
-          temp=false
-        }
-        
-      }, 500);
-    }
+    this.createAvat()
   }
 
   get seed(): string {
@@ -35,7 +24,7 @@ export class AvatarComponent implements OnInit {
 
   }
 
-  @ViewChild('avat') avat!: ElementRef
+  @ViewChild('avat',{ static:true }) avat!: ElementRef
 
 
 
@@ -45,7 +34,7 @@ export class AvatarComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-
+    this.createAvat()
   }
 
   createAvat() {

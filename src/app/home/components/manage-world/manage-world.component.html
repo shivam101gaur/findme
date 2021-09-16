@@ -17,7 +17,7 @@
         Join World
       </ion-button>
     </ion-fab-list>
-  </ion-fab>
+  </ion-fab>  
 
   <ion-list lines="full">
 
@@ -63,4 +63,9 @@
 
 
   </ion-list>
+<div class="joinmsg" *ngIf="worldList?.length==0">
+  <ion-text color="medium" >
+    <h1 style="text-align: center;width: 100%;">Join a World</h1>
+  </ion-text>
+</div>
 </ion-content>

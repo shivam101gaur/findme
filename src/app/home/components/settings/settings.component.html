@@ -17,8 +17,7 @@
 
 
     <ion-avatar>
-      <avatar [seed]="userNameFormControl.value??''" ></avatar>
-      <!-- <img [src]="'https://avatars.dicebear.com/api/avataaars/'+userNameFormControl.value+'.svg'" alt="image"> -->
+      <avatar [seed]="userNameFormControl.value||''" ></avatar>
     </ion-avatar>
 
     <div class="edituser">
@@ -29,10 +28,10 @@
           inputmode="numeric" required>
 
 
-      <ion-button (click)="musicController.toggle_sound()"  mode="ios" size="large" class="ion-margin-top" [color]="musicController.sound_on?'success':'light'">
+      <ion-button (click)="musicController.toggle_sound()"  mode="ios" size="large" class="ion-margin-top" [color]="musicController.sound_on?'light':'light'">
         <ion-icon size="large" slot="end" [name]="musicController.sound_on?'volume-medium-outline':'volume-mute-outline'"></ion-icon>
         Music
-        <ion-toggle [checked]="musicController.sound_on" style="position: absolute;right: 0;" mode='ios' color="danger"></ion-toggle>
+        <ion-toggle [checked]="musicController.sound_on" style="position: absolute;right: 0;" mode='ios' color="success"></ion-toggle>
       </ion-button>
 
 

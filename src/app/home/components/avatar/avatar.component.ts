@@ -1,6 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { createAvatar } from '@dicebear/avatars';
-import * as style from '@dicebear/avatars-male-sprites';
+import * as avatMaleStyle from '@dicebear/avatars-male-sprites';
+import * as avatarStyle from '@dicebear/avatars-avataaars-sprites';
 
 @Component({
   selector: 'avatar',
@@ -38,11 +39,15 @@ export class AvatarComponent implements OnInit {
   }
 
   createAvat() {
-    const svg = createAvatar(style, {
+    // const avatMaleSvg = createAvatar(avatMaleStyle, {
+    //   seed: this.seed,
+    //   // ... and other options
+    // });
+    const avatSvg = createAvatar(avatarStyle, {
       seed: this.seed,
       // ... and other options
     });
-    this.avat.nativeElement.innerHTML = svg
+    this.avat.nativeElement.innerHTML = avatSvg
   }
 
 }

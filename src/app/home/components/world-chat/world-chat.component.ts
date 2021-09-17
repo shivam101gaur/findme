@@ -3,9 +3,11 @@ import { AlertController, IonContent, IonTextarea, ModalController } from '@ioni
 import { utils } from 'protractor';
 import { User } from 'src/app/models/user.model';
 import { Message, World } from 'src/app/models/world.model';
+import { AlertCreaterService } from 'src/app/services/alert-creater.service';
 import { HttpUserService } from 'src/app/services/http-user.service';
 import { HttpWorldService } from 'src/app/services/http-world.service';
 import { SocketConnectionService } from 'src/app/services/socket-connection.service';
+import { ToasterService } from 'src/app/services/toaster.service';
 
 @Component({
   selector: 'app-world-chat',
@@ -24,12 +26,12 @@ export class WorldChatComponent implements OnInit {
 
 
 
-  pageready:boolean;
+  pageready: boolean;
 
   user: User = JSON.parse(sessionStorage.getItem('currentUser'))
   peopleMap = new Map<string, User>()
 
-  constructor(private modalController: ModalController, public socket: SocketConnectionService, public http: HttpWorldService, public httpUser: HttpUserService, public alert: AlertController) { }
+  constructor(private modalController: ModalController, public socket: SocketConnectionService, public http: HttpWorldService, public httpUser: HttpUserService, public alert: AlertCreaterService,public toaster:ToasterService) { }
 
   ngOnInit() {
     this.messageList = this.world.chat;
@@ -38,6 +40,39 @@ export class WorldChatComponent implements OnInit {
 
   }
 
+  readyToLeave() {
+    console.log('leave world')
+    this.alert.alert({
+      header:'Confirm Launch ?',
+      message:'Do you want to leave this World ?',
+      mode:'ios',
+      buttons:[
+        {
+          text:'Stay',
+          role:'cancel',
+        },
+        {
+          text:'Leave',
+          handler:()=>{
+            console.log(this.world,this.user)
+            this.http.removeUserFromWorld(this.world?._id, this.user?._id).subscribe(res=>{
+              this.toaster.toast({
+                message:'You left '+this.world?.name
+              })
+              this.cancel()
+              console.log('world after you left = >',res)
+            },err=>{
+              this.toaster.toast({
+                message:` ❌ Error in leaving the world ❌`
+              })
+            })
+          }
+        }
+      ]
+    })
+  }
+
+
 
   getWorldMembers() {
     this.httpUser.getUsersInList(this.world.members).subscribe(res => {
@@ -45,10 +80,10 @@ export class WorldChatComponent implements OnInit {
         this.peopleMap.set(user._id, user)
       })
       console.log(this.peopleMap)
-      this.pageready=true
+      this.pageready = true
       this.scrollToBottom(150)
     }, err => {
-      this.alert.create({
+      this.alert.alert({
         message: 'could not fetch world members'
       })
       console.error('Could not get World Members!!')

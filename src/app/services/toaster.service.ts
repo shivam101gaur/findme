@@ -13,6 +13,7 @@ export class ToasterService {
 
     // 🤔 setting default parameters for toast
     toastOption.duration ??= 1000
+    toastOption.mode = 'ios'
 
     const toast = await this.toastController.create(toastOption)
     toast.present();

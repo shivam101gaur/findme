@@ -43,6 +43,10 @@ export class HttpWorldService {
   addMembersToWorld(members: string[], worldId: string) {
     return this.http.put<World>(`${this.world_api_address}addmember/${worldId}`, { members })
   }
+  //remove user from world 
+  removeUserFromWorld(worldId:string,userId:string){
+    return this.http.delete<World>(`${this.world_api_address}removemember/${worldId}/${userId}`)
+  }
   // 📝 delete a world by it's ID
   deleteWorld(worldId: string) {
     return this.http.delete<World>(`${this.world_api_address}${worldId}`)

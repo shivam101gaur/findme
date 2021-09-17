@@ -5,6 +5,9 @@
         <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
+    <ion-button (click)="readyToLeave()" color="light" slot="end" expand="block" fill="clear" shape="round">
+      <ion-icon size="large" name="rocket-sharp"></ion-icon>
+    </ion-button>
     <ion-title> {{world.name?.toUpperCase()}}</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -19,16 +22,16 @@
         {{message.timeStamp | date: 'EEE , d MMM y'}}
       </div>
 
-      <div  class="senderavat">
+      <div class="senderavat">
 
         <ion-avatar>
           <!-- <img [src]="'https://avatars.dicebear.com/api/big-smile/'+(peopleMap?.get(message?.from)?.name)+'.svg'"> -->
-          <avatar [seed]="(peopleMap?.get(message?.from)?.name)" ></avatar>
+          <avatar [seed]="(peopleMap?.get(message?.from)?.name)"></avatar>
         </ion-avatar>
 
 
       </div>
-    
+
 
       <div class="messagewrapper" [class]="(user._id==message.from)?'mymessage':'yourmessage'">
 

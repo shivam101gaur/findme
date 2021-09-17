@@ -12,7 +12,9 @@
 
     <ion-item *ngFor="let user of userList">
       <ion-label>{{user.name}}</ion-label>
-      <ion-icon slot="start" color="medium" name="person-circle-outline"></ion-icon>
+      <ion-avatar slot="start">
+        <avatar [seed]="user.name||''" ></avatar>
+      </ion-avatar>
      
     </ion-item>
 

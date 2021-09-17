@@ -66,6 +66,9 @@ export class LoginComponent implements OnInit {
         }
 
       }
+      else{
+        this.alertController.alert({header:'Do you have a weak memory?',message:'Password did not match'})
+      }
     }, (err) => {
       alert('User could not be validated! Try again later')
     }

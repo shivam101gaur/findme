@@ -40,7 +40,7 @@ ion-textarea {
     border-radius: 8px;
 }
 .messagewrapper {
-    max-width: 60%;
+    max-width: 40%;
     margin: 0 2.5%;
     align-self: flex-end;
     border-radius: 5px;
@@ -116,6 +116,15 @@ ion-textarea {
        }
     }
 }
+.messageActions{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    max-width:25%;
+}
+
 
 .sendbtn {
     position: relative;

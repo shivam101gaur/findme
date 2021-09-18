@@ -29,7 +29,11 @@ export class JoinWorldComponent implements OnInit {
     }
 
     this.httpWorld.getNewWorldForUserByUserId(currentUserId).subscribe((res) => {
+     
       this.worldList = res;
+     if(this.worldList.length==0){
+       this.cancel()
+     } 
     }, err => {
 
     })

@@ -13,11 +13,13 @@ export class AuthenticationGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
+
+      if (!(sessionStorage.getItem('welcomeCompleted')=='true')) {
+       
+        return this.router.parseUrl('/welcome');
+      }
     if (sessionStorage.getItem('currentUser')) {
 
-      if (JSON.parse(sessionStorage.getItem('currentUser')).name == 'admin') {
-        return this.router.parseUrl('/admin');
-      }
       return this.router.parseUrl('/home');
     }
     return true;

@@ -124,9 +124,10 @@ ion-textarea {
     justify-content: space-around;
     align-items: center;
     flex-wrap: nowrap;
-    overflow: hidden;
+    overflow: visible;
     max-width: 25%;
-    visibility: visible;
+    visibility: hidden;
+    padding: 1%;
 }
 
 .sendbtn {

@@ -45,6 +45,10 @@ export class SocketConnectionService {
     this.socket.emit("msgfromuser", { message, worldId: worldId })
   }
 
+  deleteMessage(dltReq:{messageId:string,worldId:string}){
+    this.socket.emit("msgfromuser", dltReq)
+  }
+
   getMessages() {
     return new Observable((observer:Observer<Message[]>) => {
 

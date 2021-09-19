@@ -3,6 +3,7 @@ import { Observable, Observer } from 'rxjs';
 import { io } from "socket.io-client";
 import { apiAddress } from 'src/environments/environment';
 import { Message, World } from '../models/world.model';
+import { ToasterService } from './toaster.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class SocketConnectionService {
   private socket = io(apiAddress, { transports: ['websocket'], autoConnect: false })
 
 
-  constructor() {
+  constructor(public toaster: ToasterService) {
     this.socket.on('disconnect', () => {
       this.socket.off("connect")
       this.socket.off("msgfromserver")
@@ -22,7 +23,22 @@ export class SocketConnectionService {
       console.log('Socket connection started')
       console.log(this.socket.connected);
       this.socket.on("postMessageError",(data)=>{
-        console.error('Server Error : Error in sending messages.\nMessage could not be added to world\n',data)
+        console.error('Server Error : Error in sending messages.\nMessage could not be added to world\n',data);
+        this.toaster.toast({
+          message: "Could not send Message!",
+          color:'danger',
+          duration:4500,
+          buttons: [{text: 'OK',role: 'cancel' }]
+        })
+      })
+      this.socket.on("deleteMessageError",(data)=>{
+        console.error('Server Error : Error in deleting messages.\nMessage could not be deleted from the world\n',data)
+        this.toaster.toast({
+          message: "Could not delete Message!",
+          color:'danger',
+          duration:4500,
+          buttons: [{text: 'OK',role: 'cancel' }]
+        })
       })
     })
   }
@@ -46,7 +62,7 @@ export class SocketConnectionService {
   }
 
   deleteMessage(dltReq:{messageId:string,worldId:string}){
-    this.socket.emit("msgfromuser", dltReq)
+    this.socket.emit("messageDeleteRequest", dltReq)
   }
 
   getMessages() {

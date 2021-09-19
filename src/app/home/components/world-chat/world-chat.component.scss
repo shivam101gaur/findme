@@ -16,6 +16,9 @@ ion-textarea {
     height: auto;
     display: flex;
     flex-wrap: wrap;
+    &:hover > .messageActions {
+        visibility: visible;
+    }
 }
 .senderavat {
     display: flex;
@@ -78,9 +81,9 @@ ion-textarea {
         justify-content: space-between;
         align-items: center;
         // background-color: $bg;
-       span{
-        color: #7c2baebf;
-       }
+        span {
+            color: #7c2baebf;
+        }
     }
 }
 
@@ -111,20 +114,20 @@ ion-textarea {
         justify-content: space-between;
         align-items: center;
         // background-color: $bg;
-       span{
-        color: rgba(13, 112 ,13 , 79%);
-       }
+        span {
+            color: rgba(13, 112, 13, 79%);
+        }
     }
 }
-.messageActions{
+.messageActions {
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-wrap: nowrap;
     overflow: hidden;
-    max-width:25%;
+    max-width: 25%;
+    visibility: hidden;
 }
-
 
 .sendbtn {
     position: relative;

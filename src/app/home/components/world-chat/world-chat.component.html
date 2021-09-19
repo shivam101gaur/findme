@@ -25,8 +25,6 @@
         {{message.timeStamp | date: 'EEE , d MMM y'}}
       </div>
 
-
-
       <div class="senderavat">
 
         <ion-avatar>
@@ -37,12 +35,11 @@
 
       </div>
 
-
       <div class="messagewrapper" [class]="(user._id==message.from)?'mymessage':'yourmessage'">
 
         <div class="msgsender">
           <span style="margin-right: 5px;">
-            {{peopleMap?.get(message?.from)?.name|titlecase}}
+            {{(peopleMap?.get(message?.from)?.name|titlecase)}}
           </span>
 
           <span style="margin-left: 5px;">
@@ -58,13 +55,15 @@
 
       <div class="messageActions">
 
-        <ion-button color="primary" fill="clear">
+        <ion-button *ngIf="message.from==user._id" (click)="deleteMessage(message,i)" color="danger" fill="clear">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-button>
+
+        <ion-button [cdkCopyToClipboard]="message.content"
+          (click)="toaster.toast({message:'Text Copied',position:'bottom'})" color="primary" fill="clear">
           <ion-icon slot="icon-only" name="copy-outline"></ion-icon>
         </ion-button>
 
-        <ion-button (click)="deleteMessage(message,i)" color="danger" fill="clear">
-          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-        </ion-button>
       </div>
 
     </div>

@@ -25,11 +25,13 @@ export class ManageWorldComponent implements OnInit {
   constructor(private httpWorld: HttpWorldService, public modalController: ModalController, public alertCreater: AlertCreaterService) { }
 
   ngOnInit() {
+    this.current_user = JSON.parse(sessionStorage.getItem('currentUser'))
     this.getWorldListForUser();
 
   }
 
   getWorldListForUser() {
+
     this.httpWorld.getWorldByUserId(this.current_user._id).subscribe((res: World[]) => {
       console.log(`received world List =>`, res);
       this.worldList = res;

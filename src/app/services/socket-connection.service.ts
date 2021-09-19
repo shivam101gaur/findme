@@ -21,6 +21,9 @@ export class SocketConnectionService {
     this.socket.on("connect", () => {
       console.log('Socket connection started')
       console.log(this.socket.connected);
+      this.socket.on("postMessageError",(data)=>{
+        console.error('Server Error : Error in sending messages.\nMessage could not be added to world\n',data)
+      })
     })
   }
   startConnection(world: World) {
@@ -45,8 +48,8 @@ export class SocketConnectionService {
   getMessages() {
     return new Observable((observer:Observer<Message[]>) => {
 
-      this.socket.on("msgfromserver", (message:Message[]) => {
-        observer.next(message)
+      this.socket.on("msgfromserver", (messages:Message[]) => {
+        observer.next(messages)
       })
     })
   }

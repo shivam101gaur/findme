@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Quote } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { apiAddress } from 'src/environments/environment';
-import { World } from '../models/world.model';
+import { Message, World } from '../models/world.model';
 
 @Injectable({
   providedIn: 'root'
@@ -44,12 +44,20 @@ export class HttpWorldService {
     return this.http.put<World>(`${this.world_api_address}addmember/${worldId}`, { members })
   }
   //remove user from world 
-  removeUserFromWorld(worldId:string,userId:string){
+  removeUserFromWorld(worldId: string, userId: string) {
     return this.http.delete<World>(`${this.world_api_address}removemember/${worldId}/${userId}`)
   }
   // 📝 delete a world by it's ID
   deleteWorld(worldId: string) {
     return this.http.delete<World>(`${this.world_api_address}${worldId}`)
+  }
+
+  deleteMessage(worldId: string, messageId: string) {
+    return this.http.delete<World>(`${this.world_api_address}message/${worldId}/${messageId}`)
+  }
+
+  postMessage(worldId:string,message:Message){
+    return this.http.post<World>(`${this.world_api_address}postmessage/${worldId}`,message)
   }
 
 

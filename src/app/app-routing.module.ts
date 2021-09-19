@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AdminGuard } from './guards/admin.guard';
 import { AuthenticationGuard } from './guards/authentication.guard';
 import { HomeGuard } from './guards/home.guard';
 import { WelcomeGuard } from './guards/welcome.guard';
@@ -25,11 +24,6 @@ const routes: Routes = [
     path: 'authentication',
     loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationPageModule),
     canActivate: [AuthenticationGuard]
-  },
-  {
-    path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminPageModule),
-    canActivate: [AdminGuard]
   },
 ];
 

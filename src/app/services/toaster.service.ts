@@ -18,5 +18,7 @@ export class ToasterService {
     const toast = await this.toastController.create(toastOption)
     toast.present();
 
+    return toast
+
   }
 }

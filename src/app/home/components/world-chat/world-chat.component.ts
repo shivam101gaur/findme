@@ -31,7 +31,7 @@ export class WorldChatComponent implements OnInit {
   user: User = JSON.parse(sessionStorage.getItem('currentUser'))
   peopleMap = new Map<string, User>()
 
-  constructor(private modalController: ModalController, public socket: SocketConnectionService, public http: HttpWorldService, public httpUser: HttpUserService, public alert: AlertCreaterService,public toaster:ToasterService) { }
+  constructor(private modalController: ModalController, public socket: SocketConnectionService, public http: HttpWorldService, public httpUser: HttpUserService, public alert: AlertCreaterService, public toaster: ToasterService) { }
 
   ngOnInit() {
     this.messageList = this.world.chat;
@@ -43,27 +43,27 @@ export class WorldChatComponent implements OnInit {
   readyToLeave() {
     console.log('leave world')
     this.alert.alert({
-      header:'Confirm Launch ?',
-      message:'Do you want to leave this World ?',
-      mode:'ios',
-      buttons:[
+      header: 'Confirm Launch ?',
+      message: 'Do you want to leave this World ?',
+      mode: 'ios',
+      buttons: [
         {
-          text:'Stay',
-          role:'cancel',
+          text: 'Stay',
+          role: 'cancel',
         },
         {
-          text:'Leave',
-          handler:()=>{
-            console.log(this.world,this.user)
-            this.http.removeUserFromWorld(this.world?._id, this.user?._id).subscribe(res=>{
+          text: 'Leave',
+          handler: () => {
+            console.log(this.world, this.user)
+            this.http.removeUserFromWorld(this.world?._id, this.user?._id).subscribe(res => {
               this.toaster.toast({
-                message:'You left '+this.world?.name
+                message: 'You left ' + this.world?.name
               })
               this.cancel()
-              console.log('world after you left = >',res)
-            },err=>{
+              console.log('world after you left = >', res)
+            }, err => {
               this.toaster.toast({
-                message:` ❌ Error in leaving the world ❌`
+                message: ` ❌ Error in leaving the world ❌`
               })
             })
           }
@@ -79,7 +79,7 @@ export class WorldChatComponent implements OnInit {
       res.map((user) => {
         this.peopleMap.set(user._id, user)
       })
-      console.log(this.peopleMap)
+      // console.log(this.peopleMap)
       this.pageready = true
       this.scrollToBottom(150)
     }, err => {
@@ -136,6 +136,45 @@ export class WorldChatComponent implements OnInit {
 
   cancel() {
     this.modalController.dismiss()
+  }
+
+  deleteMessage(message: Message, messageIndex: number) {
+    if (messageIndex < 0) return
+    this.messageList.splice(messageIndex, 1)
+
+    this.toaster.toast({
+      message: 'Message Deleted !',
+      duration: 3000,
+
+
+      buttons: [{
+        text: 'Restore',
+        role: 'restore',
+        handler: () => {
+          this.messageList.splice(messageIndex, 0, message)
+        }
+      }]
+    }).then(toast => {
+      toast.onDidDismiss().then(t => {
+        if (t.role != 'restore') {
+          this.http.deleteMessage(this.world._id, message._id).subscribe(res => { 
+            // console.table(res.chat) ;
+            this.messageList = res.chat 
+          }, err => {
+            this.messageList.splice(messageIndex, 0, message)
+            this.toaster.toast({
+              message: "Could not delete Message!",
+              color:'danger',
+              duration:4500,
+              buttons: [{text: 'OK',role: 'cancel' }]
+            })
+          })
+        }
+
+      })
+    })
+
+
   }
 
 }

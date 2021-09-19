@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { User } from 'src/app/models/user.model';
 import { AlertCreaterService } from 'src/app/services/alert-creater.service';
 import { HttpUserService } from 'src/app/services/http-user.service';
 import { MusicControllerService } from 'src/app/services/music-controller.service';
+import { AboutAppComponent } from '../about-app/about-app.component';
 
 @Component({
   selector: 'app-settings',
@@ -26,7 +27,7 @@ export class SettingsComponent implements OnInit {
   constructor(public musicController: MusicControllerService, private userHttp: HttpUserService,
      private alertController: AlertCreaterService,
      private router:Router
-     ,private activateRoute:ActivatedRoute) { }
+     ,private activateRoute:ActivatedRoute,public modalController: ModalController) { }
 
   ngOnInit() { }
 
@@ -73,6 +74,22 @@ export class SettingsComponent implements OnInit {
   logout(){
     sessionStorage.removeItem('currentUser')
     this.router.navigateByUrl('authentication')
+  }
+
+  async showDeveloperInfoModal(){
+
+    const modal = await this.modalController.create({
+      component: AboutAppComponent,
+      cssClass: 'my-custom-class',
+      swipeToClose: true,
+      presentingElement: await this.modalController.getTop(),
+      mode: 'ios',
+      backdropDismiss:false,
+    });
+    modal.onDidDismiss().then((res) => {
+      console.log(`Did you see the developer? 😀`)
+    })
+    return await modal.present();
   }
 
 }

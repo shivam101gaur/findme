@@ -11,7 +11,7 @@
     <ion-title> {{world.name?.toUpperCase()}}</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content #content [scrollX]="false" [forceOverscroll]="true" [scrollEvents]="true">
+<ion-content #content [scrollX]="false" [forceOverscroll]="false" [scrollEvents]="true">
 
   <div *ngIf="user && pageready" class="chat">
 

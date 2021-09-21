@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-about-app',
@@ -7,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutAppComponent implements OnInit {
 
-  constructor() { }
+  constructor(private modalController: ModalController,) { }
 
   ngOnInit() {}
+
+  cancel() {
+    this.modalController.dismiss()
+  }
 
 }

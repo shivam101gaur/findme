@@ -7,7 +7,7 @@
         </ion-buttons>
         <ion-title>  <span style="font-family: spaceage;
         font-weight: bold;
-        font-size: 35px;
+        font-size: 30px;
         color: #11696e;text-align: center;">find-me</span></ion-title>
     </ion-toolbar>
 </ion-header>
@@ -18,12 +18,12 @@
      
         <span style="font-family: spaceage;
         font-weight: bold;
-        font-size: 20px;
+        font-size: 18px;
         color: #516060;">a world away from world</span>
     </div>
     <!-- <br> -->
     <div class="devimage">
-        <img src="../../../../assets/dev_images/dev2.jpeg" alt="Developer Image">
+        <img [src]="devImageAddress" (click)="changeDevImage()" alt="Developer Image">
     </div>
     <ion-list lines="none">
         <ion-item>
@@ -38,11 +38,11 @@
         </ion-item>
         <ion-item>
             <ion-icon color="tertiary" slot="start" name="logo-github"></ion-icon>
-          <ion-label> <a href="https://github.com/shivam101gaur">https://github.com/shivam101gaur</a></ion-label>
+          <ion-label> <a target="_blank" href="https://github.com/shivam101gaur">https://github.com/shivam101gaur</a></ion-label>
         </ion-item>
         <ion-item>
             <ion-icon color="tertiary" slot="start" name="logo-linkedin"></ion-icon>
-          <ion-label><a href="https://www.linkedin.com/in/shivam-gaur-1307/">https://www.linkedin.com/in/shivam-gaur-1307/</a></ion-label>
+          <ion-label><a target="_blank" href="https://www.linkedin.com/in/shivam-gaur-1307/">https://www.linkedin.com/in/shivam-gaur-1307/</a></ion-label>
         </ion-item>
       </ion-list>
 

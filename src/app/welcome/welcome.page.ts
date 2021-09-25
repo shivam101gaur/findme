@@ -18,9 +18,14 @@ export class WelcomePage implements OnInit {
   constructor(public music_controller: MusicControllerService, public router: Router, public activated_route: ActivatedRoute) { }
 
   ngOnInit() {
+
   }
 
   start_game() {
+    
+    // document.getElementById('maincontainer').requestFullscreen().then(()=>{
+    //   console.log('entered full screen');
+    // })
     this.game_on = true;
     this.controlWelcomeAnimation();
     this.music_controller.play_bgm()

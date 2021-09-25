@@ -58,13 +58,7 @@ export class LoginComponent implements OnInit {
       if (user.password == this.user_password.value) {
         sessionStorage.setItem("currentUser", JSON.stringify(user));
         console.log('login successfull');
-        if (user.name == 'admin') {
-          this.router.navigate(['./admin'])
-        }
-        else {
           this.router.navigate(['./home'])
-        }
-
       }
       else{
         this.alertController.alert({header:'Do you have a weak memory?',message:'Password did not match'})

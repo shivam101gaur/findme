@@ -73,6 +73,7 @@ export class SettingsComponent implements OnInit {
 
   logout(){
     sessionStorage.removeItem('currentUser')
+    location.reload()
     this.router.navigateByUrl('authentication')
   }
 
@@ -87,7 +88,7 @@ export class SettingsComponent implements OnInit {
       backdropDismiss:false,
     });
     modal.onDidDismiss().then((res) => {
-      console.log(`Did you see the developer? 😀`)
+      // console.log(`Did you see the developer? 😀`)
     })
     return await modal.present();
   }

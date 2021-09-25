@@ -42,7 +42,7 @@ export class WorldChatComponent implements OnInit {
   }
 
   readyToLeave() {
-    console.log('leave world')
+    // console.log('leave world')
     this.alert.alert({
       header: 'Confirm Launch ?',
       message: 'Do you want to leave this World ?',

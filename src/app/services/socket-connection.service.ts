@@ -17,11 +17,11 @@ export class SocketConnectionService {
     this.socket.on('disconnect', () => {
       this.socket.off("connect")
       this.socket.off("msgfromserver")
-      console.log('Socket connection ended')
+      // console.log('Socket connection ended')
     });
     this.socket.on("connect", () => {
-      console.log('Socket connection started')
-      console.log(this.socket.connected);
+      // console.log('Socket connection started')
+      // console.log(this.socket.connected);
       this.socket.on("postMessageError",(data)=>{
         console.error('Server Error : Error in sending messages.\nMessage could not be added to world\n',data);
         this.toaster.toast({

@@ -19,21 +19,28 @@ import { WorldChatComponent } from '../world-chat/world-chat.component';
 export class ManageWorldComponent implements OnInit {
 
   worldList!: World[];
-  // FIXME remove this once session storage service is added
-  current_user: User = JSON.parse(sessionStorage.getItem('currentUser'))
+
+  current_user!: User;
 
   constructor(private httpWorld: HttpWorldService, public modalController: ModalController, public alertCreater: AlertCreaterService) { }
 
   ngOnInit() {
     this.current_user = JSON.parse(sessionStorage.getItem('currentUser'))
+    // console.log(this.current_user)
     this.getWorldListForUser();
 
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    console.log(`manage world was destroyed`)
   }
 
   getWorldListForUser() {
 
     this.httpWorld.getWorldByUserId(this.current_user._id).subscribe((res: World[]) => {
-      console.log(`received world List =>`, res);
+      // console.log(`received world List =>`, res);
       this.worldList = res;
     })
   }
@@ -51,7 +58,7 @@ export class ManageWorldComponent implements OnInit {
           handler: () => {
 
             this.httpWorld.deleteWorld(worldId).subscribe((res) => {
-              console.log(`Deleted World`, res);
+              // console.log(`Deleted World`, res);
               this.getWorldListForUser();
             },
               (err) => {

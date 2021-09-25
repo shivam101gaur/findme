@@ -73,7 +73,7 @@ export class SettingsComponent implements OnInit {
 
   logout(){
     sessionStorage.removeItem('currentUser')
-    location.reload()
+    window.location.reload()
     this.router.navigateByUrl('authentication')
   }
 

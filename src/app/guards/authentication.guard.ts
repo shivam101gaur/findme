@@ -14,7 +14,7 @@ export class AuthenticationGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
 
-      if (!(sessionStorage.getItem('welcomeCompleted')=='true')) {
+      if (!(localStorage.getItem('welcomeCompleted')=='true')) {
        
         return this.router.parseUrl('/welcome');
       }

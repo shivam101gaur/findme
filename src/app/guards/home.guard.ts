@@ -15,7 +15,7 @@ export class HomeGuard implements CanActivate {
 
 
       
-      if (!(sessionStorage.getItem('welcomeCompleted')=='true')) {
+      if (!(localStorage.getItem('welcomeCompleted')=='true')) {
        
         return this.router.parseUrl('/welcome');
       }

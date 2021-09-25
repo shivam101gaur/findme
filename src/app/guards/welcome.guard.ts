@@ -13,7 +13,7 @@ export class WelcomeGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
    
-    if (sessionStorage.getItem('welcomeCompleted') == 'true') {
+    if (localStorage.getItem('welcomeCompleted') == 'true') {
 
       return this.router.parseUrl('/authentication');
     }

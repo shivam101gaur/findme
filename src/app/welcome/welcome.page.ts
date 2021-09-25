@@ -81,7 +81,7 @@ export class WelcomePage implements OnInit {
               title_div.classList.add('fade_out');
               setTimeout(() => {
                 // 📑 " welcome already completed " Flag in session storage
-                sessionStorage.setItem('welcomeCompleted', "true");
+                localStorage.setItem('welcomeCompleted', "true");
                 this.router.navigate(['../authentication'], { relativeTo: this.activated_route })
               }, 2000);
 

@@ -16,7 +16,7 @@ export class MusicControllerService {
   bgm = new Howl(
     {
       autoplay: false,
-      src: ['assets/music/aggressive-expansion.mp3'],
+      src: ['assets/music/AltoAdventure.mp3'],
       sprite: {
         audible: [4000, 100000],
       }

@@ -14,7 +14,7 @@ export class CreateWorldComponent implements OnInit {
 
   worldForm = new FormGroup({
     'name':new FormControl(null,[Validators.required,Validators.minLength(1),Validators.maxLength(15)]),
-    'password':new FormControl(null,[Validators.required,Validators.minLength(4),Validators.maxLength(4)]),
+    'password':new FormControl('',[Validators.maxLength(4)]),
   })
 
   public get worldNameFormControl() {

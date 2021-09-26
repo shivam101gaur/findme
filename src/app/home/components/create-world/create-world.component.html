@@ -13,7 +13,7 @@
   <form [formGroup]="worldForm" (ngSubmit)="onSubmit()">
     <ion-list>
 
-      <ion-list-header lines="full">
+      <ion-list-header lines="none">
         <ion-label>
           Create a new World
         </ion-label>
@@ -29,12 +29,17 @@
         <ion-label position="floating">World Password</ion-label>
         <ion-input formControlName="password"></ion-input>
       </ion-item>
+      <ion-item lines="none">
+        <ion-note color="tertiary" slot="start">* Leave the password to keep the world Public *</ion-note>
+      </ion-item>
 
-      <ion-item>
-        <ion-button type="submit" slot="end">
-          Submit
+      <ion-item lines="none">
+        <ion-button color="success" size="large" class="ion-margin" expand="block" style="width: 100%;" type="submit"
+          slot="end">
+          Create New World
         </ion-button>
       </ion-item>
+
 
     </ion-list>
 

@@ -9,6 +9,7 @@ import { HttpUserService } from 'src/app/services/http-user.service';
 import { HttpWorldService } from 'src/app/services/http-world.service';
 import { SocketConnectionService } from 'src/app/services/socket-connection.service';
 import { ToasterService } from 'src/app/services/toaster.service';
+import { AddMemberComponent } from '../add-member/add-member.component';
 
 @Component({
   selector: 'app-world-chat',
@@ -37,8 +38,25 @@ export class WorldChatComponent implements OnInit {
   ngOnInit() {
     this.messageList = this.world.chat;
     this.getworld()
+  }
 
 
+  async presentaddMemebersModal() {
+
+    const modal = await this.modalController.create({
+      componentProps: {
+        'world': this.world
+      },
+      component: AddMemberComponent,
+      cssClass: 'my-custom-class',
+      swipeToClose: true,
+      presentingElement: await this.modalController.getTop(),
+      mode: 'md'
+    });
+    modal.onDidDismiss().then((res) => {
+      // this.getNewWorldsForUser();
+    })
+    return await modal.present();
   }
 
   readyToLeave() {
@@ -119,11 +137,11 @@ export class WorldChatComponent implements OnInit {
         const newMessageFromList = message.map(ele => ele.from)
         const existingMessageFromList = this.messageList.map(ele => ele.from)
 
-        for (let index = newMessageFromList.length-1; index >= 0; index--) {
+        for (let index = newMessageFromList.length - 1; index >= 0; index--) {
           const newMessageFromEle = newMessageFromList[index];
-          if(!existingMessageFromList.includes(newMessageFromEle)){
-          //  if there are members in new message list which were not there in existing message list
-          this.messageList = message
+          if (!existingMessageFromList.includes(newMessageFromEle)) {
+            //  if there are members in new message list which were not there in existing message list
+            this.messageList = message
             this.getWorldMembers()
             break;
           }
@@ -163,7 +181,7 @@ export class WorldChatComponent implements OnInit {
   }
 
   deleteMessage(message: Message, messageIndex: number) {
-    if (messageIndex < 0 || message.from!=this.user._id) return
+    if (messageIndex < 0 || message.from != this.user._id) return
     this.messageList.splice(messageIndex, 1)
 
     this.toaster.toast({

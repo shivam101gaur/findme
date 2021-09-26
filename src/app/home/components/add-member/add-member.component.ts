@@ -1,48 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { World } from 'src/app/models/world.model';
 import { HttpWorldService } from 'src/app/services/http-world.service';
 import { ToasterService } from 'src/app/services/toaster.service';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { ViewMembersComponent } from '../view-members/view-members.component';
 import { AlertCreaterService } from 'src/app/services/alert-creater.service';
+import { User } from 'src/app/models/user.model';
+import { HttpUserService } from 'src/app/services/http-user.service';
 
 @Component({
-  selector: 'app-join-world',
-  templateUrl: './join-world.component.html',
-  styleUrls: ['./join-world.component.scss'],
+  selector: 'app-add-member',
+  templateUrl: './add-member.component.html',
+  styleUrls: ['./add-member.component.scss'],
 })
-export class JoinWorldComponent implements OnInit {
+export class AddMemberComponent implements OnInit {
 
-  worldList: World[] = []
+  @Input() world: World;
 
-  constructor(private modalController: ModalController, private httpWorld: HttpWorldService, private toaster: ToasterService, private alert: AlertCreaterService) { }
+  userList: User[] = []
+
+  constructor(private modalController: ModalController, private httpWorld: HttpWorldService, private httpUser: HttpUserService, private toaster: ToasterService, private alert: AlertCreaterService) { }
 
   ngOnInit() {
-    this.getNewWorldsForUser()
+    this.getAllUsers()
   }
 
-  getNewWorldsForUser() {
-
-    try {
-      var currentUserId = JSON.parse(sessionStorage.getItem('currentUser'))._id;
-    } catch (error) {
-      return
-    }
-
-    this.httpWorld.getNewWorldForUserByUserId(currentUserId).subscribe((res) => {
-
-      this.worldList = res;
-      if (this.worldList.length == 0) {
-        this.cancel()
-      }
-    }, err => {
-
+  getAllUsers() {
+    this.httpUser.getAllUsers().subscribe(res => {
+      this.userList = res.filter(user => {
+        return !(this.world.members.includes(user._id))
+      })
     })
   }
 
+
   // 📝 adding current user to a world by default
   // you can also add multiple users by passing their user id in second parameter
-  joinWorld(world: World, membersToAdd: string[] = []) {
+  joinWorld(world: World=this.world, membersToAdd: string[] = []) {
 
     if (world.password) {
       this.alert.alert({
@@ -76,7 +70,7 @@ export class JoinWorldComponent implements OnInit {
                     message: `Success`,
 
                   });
-                  this.getNewWorldsForUser()
+                  this.cancel()
                 }, err => {
                   this.toaster.toast({
                     header: '❌ Error in Joining the world',
@@ -108,7 +102,7 @@ export class JoinWorldComponent implements OnInit {
           message: `Success`,
 
         });
-        this.getNewWorldsForUser()
+        this.cancel()
       }, err => {
         this.toaster.toast({
           header: '❌ Error in Joining the world',
@@ -129,25 +123,6 @@ export class JoinWorldComponent implements OnInit {
   cancel() {
     this.modalController.dismiss();
   }
-
-  async presentViewMembersModal(world: World) {
-
-    const modal = await this.modalController.create({
-      componentProps: {
-        'world': world
-      },
-      component: ViewMembersComponent,
-      cssClass: 'my-custom-class',
-      swipeToClose: true,
-      presentingElement: await this.modalController.getTop(),
-      mode: 'md'
-    });
-    modal.onDidDismiss().then((res) => {
-      // this.getNewWorldsForUser();
-    })
-    return await modal.present();
-  }
-
 
 
 }

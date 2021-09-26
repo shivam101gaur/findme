@@ -5,9 +5,16 @@
         <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-button (click)="readyToLeave()" color="light" slot="end" expand="block" fill="clear" shape="round">
-      <ion-icon size="large" name="rocket-sharp"></ion-icon>
-    </ion-button>
+    <ion-buttons style="background-color: #0000006e;border-radius: 50px;padding: 2.5px 10px;" slot="end">
+      <ion-button *ngIf="world.created_by==user._id" class="ion-padding-end" (click)="presentaddMemebersModal()" color="light" expand="block" fill="clear"
+        shape="round">
+        <ion-icon size="medium" slot="icon-only" name="person-add-sharp"></ion-icon>
+      </ion-button>
+      <ion-button class="ion-margin-horizontal" (click)="readyToLeave()" color="light" expand="block" fill="clear"
+        shape="round">
+        <ion-icon size="medium" slot="icon-only" name="rocket-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title> {{world.name?.toUpperCase()}}</ion-title>
   </ion-toolbar>
 </ion-header>

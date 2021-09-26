@@ -54,7 +54,7 @@ export class WorldChatComponent implements OnInit {
       mode: 'md'
     });
     modal.onDidDismiss().then((res) => {
-      // this.getNewWorldsForUser();
+      this.getworld()
     })
     return await modal.present();
   }

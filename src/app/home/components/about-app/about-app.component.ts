@@ -19,7 +19,7 @@ export class AboutAppComponent implements OnInit {
   }
 
   private devImageCounter: number = 1
-  devImageAddress: string = '../../../../assets/dev_images/dev2.jpeg'
+  devImageAddress: string = '../../../../assets/dev_images/dev3.jpeg'
   changeDevImage() {
 
     const images = ['dev1.jpeg', 'dev2.jpeg', 'dev3.jpeg']

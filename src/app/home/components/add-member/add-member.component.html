@@ -13,15 +13,18 @@
 
 <ion-content>
   <ion-list lines="none">
-
-    <ion-item *ngFor="let user of userList">
+    <ion-item class="ion-padding-start">
+      <ion-input [(ngModel)]="filterValue" (keyup)="applyFilter()"   placeholder="Search User" ></ion-input>
+      <ion-icon slot="end" name="search-outline"></ion-icon>
+    </ion-item>
+    <ion-item *ngFor="let user of filteredUserList">
       <ion-label>{{user.name}}</ion-label>
 
       <ion-avatar slot="start">
         <avatar [seed]="user.name||''"></avatar>
       </ion-avatar>
 
-      <ion-checkbox  color="secondary" slot="end"></ion-checkbox>
+      <ion-checkbox [ngModel]="selectedUsers.includes(user._id)"  (ionChange)="selectMembers($event,user._id)" color="secondary" slot="end"></ion-checkbox>
     </ion-item>
 
 
@@ -30,8 +33,10 @@
 
 
 <ion-footer class="ion-padding ion-no-border">
-  <ion-button (click)="joinWorld()" expand="block" color="primary" fill="solid" shape="round">
-    Add Selected People
-    <ion-icon slot="end" name="person-add-sharp"></ion-icon>
-  </ion-button>
+
+  <ion-button *ngIf="selectedUsers.length>0" (click)="joinWorld()" expand="block" color="primary" fill="solid" shape="round">
+      Add {{selectedUsers.length}}  Selected People
+      <ion-icon slot="end" name="person-add-sharp"></ion-icon>
+    </ion-button>
+
 </ion-footer>

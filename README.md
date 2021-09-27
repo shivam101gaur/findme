@@ -28,7 +28,8 @@ To deploy this project run
   npm run deploy
 ```
 
-## [**Server Repository**](https://github.com/shivam101gaur/findme-server)
+## **Server Repository**
+[Find ME Server Code](https://github.com/shivam101gaur/findme-server)
   
 
 

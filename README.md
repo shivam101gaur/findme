@@ -6,7 +6,7 @@ You can either create a open world, of which everyone could be a part of, or you
 With crazy user names , comes the crazy Avatars.Get your favourite Avatars! 
 #### **[Register Now !! ](https://find-me0.web.app)**
 
-![App Screenshot](src/assets/screen-shots/world.png)
+![App Screenshot](src/assets/screen-shots/chat.png)
 
   
 

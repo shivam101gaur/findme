@@ -7,13 +7,15 @@ With crazy user names , comes the crazy Avatars.Get your favourite Avatars!
 #### **[Register Now !! ](https://find-me0.web.app)**
 
 ## Screen-Shots
-### **Welcome**
+
 ![App Screenshot](src/assets/screen-shots/welcome.png)
-### **Login**
+
 ![App Screenshot](src/assets/screen-shots/login.png)
-### **Create World**
+
 ![App Screenshot](src/assets/screen-shots/createworld.png)
+
 ![App Screenshot](src/assets/screen-shots/joinworld.png)
+
 ![App Screenshot](src/assets/screen-shots/worlds.png)
 ![App Screenshot](src/assets/screen-shots/chat.png)
 ![App Screenshot](src/assets/screen-shots/addmember.png)

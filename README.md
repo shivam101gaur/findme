@@ -8,17 +8,18 @@ With crazy user names , comes the crazy Avatars.Get your favourite Avatars!
 
 ## Screen-Shots
 
-Welcome          |  Login
+Welcome          |  Login |test
 :-------------------------:|:-------------------------:
-![App Screenshot](src/assets/screen-shots/welcome.png)|![App Screenshot](src/assets/screen-shots/login.png)
-Create World          |  Join World
-![App Screenshot](src/assets/screen-shots/createworld.png)|![App Screenshot](src/assets/screen-shots/joinworld.png)
+![App Screenshot](src/assets/screen-shots/welcome.png)|![App Screenshot](src/assets/screen-shots/login.png)|![App Screenshot](src/assets/screen-shots/login.png)
+Create World          |  Join World | kkk
+![App Screenshot](src/assets/screen-shots/createworld.png)|![App Screenshot](src/assets/screen-shots/joinworld.png)|![App Screenshot](src/assets/screen-shots/login.png)
 View World          |  Chat 
-![App Screenshot](src/assets/screen-shots/worlds.png)|![App Screenshot](src/assets/screen-shots/chat.png)
-![App Screenshot](src/assets/screen-shots/addmember.png)
+![App Screenshot](src/assets/screen-shots/worlds.png)|![App Screenshot](src/assets/screen-shots/chat.png)|![App Screenshot](src/assets/screen-shots/login.png)
+
+<!-- ![App Screenshot](src/assets/screen-shots/addmember.png)
 ![App Screenshot](src/assets/screen-shots/viewmembers.png)
 ![App Screenshot](src/assets/screen-shots/settings.png)
-![App Screenshot](src/assets/screen-shots/aboutapp.png)
+![App Screenshot](src/assets/screen-shots/aboutapp.png) -->
 
   
 
